@@ -6,3 +6,8 @@ secret.gh_token
 Code.gs
 SETUP.md
 claude_design_prompt.md
+
+# 建置工具/原始大檔，不入 repo
+*.py
+_work/
+*_raw.html

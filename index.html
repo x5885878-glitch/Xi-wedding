@@ -1302,7 +1302,7 @@ class Component extends DCLogic {
 
   chooseTransOut(v) { this.setState(s => ({ a: { ...s.a, transOut: v } })); }
   chooseTransReturn(v) { this.setState(s => ({ a: { ...s.a, transReturn: v } })); }
-  bumpStop(field, i, d) { this.setState(s => { const c = [...s.a[field]]; c[i] = Math.max(0, Math.min(10, c[i] + d)); return { a: { ...s.a, [field]: c } }; }); }
+  bumpStop(field, i, d) { this.setState(s => { const c = [...s.a[field]]; const _o = c.reduce((x,y)=>x+y,0) - c[i]; const _cap = Math.max(0, s.a.count - _o); c[i] = Math.max(0, Math.min(_cap, c[i] + d)); return { a: { ...s.a, [field]: c } }; }); }
 
   async submit() {
     const a = this.state.a;
@@ -1427,9 +1427,9 @@ class Component extends DCLogic {
       sideGroom: () => this.set('side', 'groom', true), sideBride: () => this.set('side', 'bride', true),
       countDec: () => this.setCount(a.count - 1), countInc: () => this.setCount(a.count + 1),
       outCountDec: () => this.setState(s => ({ a: { ...s.a, outCount: Math.max(1, s.a.outCount - 1) } })),
-      outCountInc: () => this.setState(s => ({ a: { ...s.a, outCount: Math.min(10, s.a.outCount + 1) } })),
+      outCountInc: () => this.setState(s => ({ a: { ...s.a, outCount: Math.min(s.a.count, s.a.outCount + 1) } })),
       returnCountDec: () => this.setState(s => ({ a: { ...s.a, returnCount: Math.max(1, s.a.returnCount - 1) } })),
-      returnCountInc: () => this.setState(s => ({ a: { ...s.a, returnCount: Math.min(10, s.a.returnCount + 1) } })),
+      returnCountInc: () => this.setState(s => ({ a: { ...s.a, returnCount: Math.min(s.a.count, s.a.returnCount + 1) } })),
       returnSame: () => this.setState(s => ({ a: { ...s.a, returnSame: true } })),
       returnDiff: () => this.setState(s => ({ a: { ...s.a, returnSame: false } })),
       next: () => this.next(), prev: () => this.prev(), tryNext: () => this.tryNext(),

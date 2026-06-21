@@ -1,0 +1,8 @@
+# 機密：GitHub token，絕不上傳
+secret.gh_token
+*.token
+
+# 本機用檔案，不發佈到公開頁面
+Code.gs
+SETUP.md
+claude_design_prompt.md

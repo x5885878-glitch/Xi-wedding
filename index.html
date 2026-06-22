@@ -999,56 +999,36 @@
                 <span style="font: 900 64px/1 'Noto Serif TC'; color: #F0D2C5;">{{ qNum }}</span>
                 <div><div style="font: 700 11px 'Noto Sans TC'; letter-spacing: 3px; text-transform: uppercase; color: #D9654E;">Shuttle · 去程</div><h2 style="margin: 4px 0 0; font: 900 30px 'Noto Serif TC'; color: #2E2A24;">去程交通</h2></div>
               </div>
-              <div style="font: 500 14px 'Noto Sans TC'; color: #9A7A6C; margin: 8px 0 18px;">選擇你前往會場的方式。</div>
-              <div style="display: grid; gap: 10px;">
-                <sc-for list="{{ outOpts }}" as="o" hint-placeholder-count="3">
-                  <button onclick="{{ o.on }}" style="display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 16px 20px; background: {{ o.bg }}; border: 2.5px solid #2E2A24; border-radius: 14px; cursor: pointer; box-shadow: 4px 4px 0 rgba(46,42,36,.15); transition: transform .15s;" style-hover="transform: translate(-2px,-2px);">
-                    <div style="text-align: left;"><div style="font: 900 19px 'Noto Serif TC'; color: {{ o.color }};">{{ o.label }}</div><div style="font: 500 12px 'Noto Sans TC'; color: {{ o.sub }};">{{ o.en }}</div></div>
-                    <span style="font: 700 18px 'Noto Sans TC'; color: {{ o.color }};">{{ o.mark }}</span>
-                  </button>
-                </sc-for>
+              <div style="font: 500 14px/1.7 'Noto Sans TC'; color: #9A7A6C; margin: 8px 0 14px;">一家人可分開搭乘。請填寫搭乘各接駁車的人數，未填的視為自行前往。</div>
+              <div style="display: flex; align-items: center; justify-content: space-between; background: #FCE9DF; border: 2.5px solid #2E2A24; border-radius: 14px; box-shadow: 4px 4px 0 rgba(46,42,36,.14); padding: 11px 16px; margin-bottom: 14px;">
+                <span style="font: 700 13px 'Noto Sans TC'; color: #2E2A24;">已安排接駁 <b style="color:#D9654E;">{{ outAssigned }}</b> / 出席 {{ partyCount }} 人</span>
+                <span style="font: 700 13px 'Noto Sans TC'; color: #9A7A6C;">其餘 {{ outSelf }} 人自行</span>
               </div>
-
-              <!-- 新竹:各上車地點分別填人數 -->
-              <sc-if value="{{ outIsHsinchu }}" hint-placeholder-val="{{ false }}">
-                <div style="margin-top: 16px; background: #fff; border: 2.5px solid #2E2A24; border-radius: 16px; box-shadow: 5px 5px 0 rgba(46,42,36,.16); padding: 16px; animation: up .35s ease both;">
-                  <div style="font: 900 14px 'Noto Sans TC'; color: #2E2A24;">上車地點與人數</div>
-                  <div style="font: 500 12px/1.6 'Noto Sans TC'; color: #9A7A6C; margin: 4px 0 12px;">一家人可於不同地點上車,請分別填寫各點人數。</div>
-                  <div style="display: grid; gap: 8px;">
-                    <sc-for list="{{ outStops }}" as="s" hint-placeholder-count="4">
-                      <div style="display: flex; align-items: center; gap: 10px; padding: 9px 11px; background: {{ s.bg }}; border: 2px solid #2E2A24; border-radius: 11px;">
-                        <span style="flex: none; width: 22px; height: 22px; border-radius: 50%; background: {{ s.dotBg }}; color: {{ s.dotColor }}; border: 2px solid #2E2A24; font: 900 11px 'Noto Sans TC'; display: flex; align-items: center; justify-content: center;">{{ s.num }}</span>
-                        <span style="flex: 1; font: 700 14px 'Noto Sans TC'; color: #2E2A24;">{{ s.label }}</span>
-                        <div style="flex: none; display: flex; align-items: center; gap: 8px;">
-                          <button onclick="{{ s.onDec }}" style="width: 30px; height: 30px; border-radius: 8px; border: 2px solid #2E2A24; background: #FBF4EA; color: #D9654E; font: 900 16px 'Noto Serif TC'; cursor: pointer;">−</button>
-                          <span style="font: 900 19px 'Noto Serif TC'; color: #D9654E; min-width: 18px; text-align: center;">{{ s.count }}</span>
-                          <button onclick="{{ s.onInc }}" style="width: 30px; height: 30px; border-radius: 8px; border: 2px solid #2E2A24; background: #FBF4EA; color: #D9654E; font: 900 16px 'Noto Serif TC'; cursor: pointer;">+</button>
-                        </div>
+              <div style="background: #fff; border: 2.5px solid #2E2A24; border-radius: 16px; box-shadow: 4px 4px 0 rgba(46,42,36,.14); padding: 14px 16px; margin-bottom: 12px;">
+                <div style="font: 900 15px 'Noto Serif TC'; color: #D9654E; margin-bottom: 2px;">新竹接駁車</div>
+                <div style="font: 500 12px/1.6 'Noto Sans TC'; color: #9A7A6C; margin-bottom: 10px;">於各上車地點集合，依人數調整路線。</div>
+                <div style="display: grid; gap: 8px;">
+                  <sc-for list="{{ outStops }}" as="s" hint-placeholder-count="4">
+                    <div style="display: flex; align-items: center; gap: 10px; padding: 9px 11px; background: {{ s.bg }}; border: 2px solid #2E2A24; border-radius: 11px;">
+                      <span style="flex: none; width: 22px; height: 22px; border-radius: 50%; background: {{ s.dotBg }}; color: {{ s.dotColor }}; border: 2px solid #2E2A24; font: 900 11px 'Noto Sans TC'; display: flex; align-items: center; justify-content: center;">{{ s.num }}</span>
+                      <span style="flex: 1; font: 700 14px 'Noto Sans TC'; color: #2E2A24;">{{ s.label }}</span>
+                      <div style="flex: none; display: flex; align-items: center; gap: 8px;">
+                        <button onclick="{{ s.onDec }}" style="width: 30px; height: 30px; border-radius: 8px; border: 2px solid #2E2A24; background: #FBF4EA; color: #D9654E; font: 900 16px 'Noto Serif TC'; cursor: pointer;">−</button>
+                        <span style="font: 900 19px 'Noto Serif TC'; color: #D9654E; min-width: 18px; text-align: center;">{{ s.count }}</span>
+                        <button onclick="{{ s.onInc }}" disabled="{{ outFull }}" style="width: 30px; height: 30px; border-radius: 8px; border: 2px solid #2E2A24; background: #FBF4EA; color: #D9654E; font: 900 16px 'Noto Serif TC'; cursor: pointer;">+</button>
                       </div>
-                    </sc-for>
-                  </div>
-                  <div style="margin-top: 12px; display: flex; align-items: center; justify-content: space-between; padding-top: 12px; border-top: 1.5px solid #F0DDCF;">
-                    <span style="font: 900 14px 'Noto Sans TC'; color: #2E2A24;">合計</span>
-                    <span style="font: 900 18px 'Noto Serif TC'; color: #D9654E;">{{ outTotal }} 人</span>
-                  </div>
-                  <div style="margin-top: 10px; font: 500 12px/1.6 'Noto Sans TC'; color: #B8A89A;">※ 屆時將依表單填寫結果安排與調整路線。</div>
-                </div>
-              </sc-if>
-
-              <!-- 豐原:人數 -->
-              <sc-if value="{{ outIsFengyuan }}" hint-placeholder-val="{{ false }}">
-                <div style="margin-top: 16px; background: #fff; border: 2.5px solid #2E2A24; border-radius: 16px; box-shadow: 5px 5px 0 rgba(46,42,36,.16); padding: 16px; animation: up .35s ease both;">
-                  <div style="font: 500 13px/1.6 'Noto Sans TC'; color: #9A7A6C; margin-bottom: 12px;">於 <b style="color:#2E2A24;">豐原火車站</b> 集合搭乘接駁專車前往會場。</div>
-                  <div style="display: flex; align-items: center; justify-content: space-between;">
-                    <span style="font: 900 15px 'Noto Sans TC'; color: #2E2A24;">搭乘人數</span>
-                    <div style="display: flex; align-items: center; gap: 12px;">
-                      <button onclick="{{ h.outCountDec }}" style="width: 36px; height: 36px; border-radius: 10px; border: 2px solid #2E2A24; background: #FBF4EA; color: #D9654E; font: 900 20px 'Noto Serif TC'; cursor: pointer;">−</button>
-                      <span style="font: 900 26px 'Noto Serif TC'; color: #D9654E; min-width: 24px; text-align: center;">{{ outCount }}</span>
-                      <button onclick="{{ h.outCountInc }}" style="width: 36px; height: 36px; border-radius: 10px; border: 2px solid #2E2A24; background: #FBF4EA; color: #D9654E; font: 900 20px 'Noto Serif TC'; cursor: pointer;">+</button>
                     </div>
-                  </div>
+                  </sc-for>
                 </div>
-              </sc-if>
+              </div>
+              <div style="display: flex; align-items: center; justify-content: space-between; background: #fff; border: 2.5px solid #2E2A24; border-radius: 16px; box-shadow: 4px 4px 0 rgba(46,42,36,.14); padding: 14px 16px;">
+                <div><div style="font: 900 15px 'Noto Serif TC'; color: #D9654E;">豐原接駁車</div><div style="font: 500 12px 'Noto Sans TC'; color: #9A7A6C;">豐原火車站集合</div></div>
+                <div style="display: flex; align-items: center; gap: 12px;">
+                  <button onclick="{{ h.outCountDec }}" style="width: 34px; height: 34px; border-radius: 9px; border: 2px solid #2E2A24; background: #FBF4EA; color: #D9654E; font: 900 18px 'Noto Serif TC'; cursor: pointer;">−</button>
+                  <span style="font: 900 24px 'Noto Serif TC'; color: #D9654E; min-width: 22px; text-align: center;">{{ outFengyuan }}</span>
+                  <button onclick="{{ h.outCountInc }}" disabled="{{ outFull }}" style="width: 34px; height: 34px; border-radius: 9px; border: 2px solid #2E2A24; background: #FBF4EA; color: #D9654E; font: 900 18px 'Noto Serif TC'; cursor: pointer;">+</button>
+                </div>
+              </div>
             </div>
           </sc-if>
 
@@ -1059,65 +1039,42 @@
                 <span style="font: 900 64px/1 'Noto Serif TC'; color: #F0D2C5;">{{ qNum }}</span>
                 <div><div style="font: 700 11px 'Noto Sans TC'; letter-spacing: 3px; text-transform: uppercase; color: #D9654E;">Shuttle · 回程</div><h2 style="margin: 4px 0 0; font: 900 30px 'Noto Serif TC'; color: #2E2A24;">回程安排</h2></div>
               </div>
-              <div style="font: 500 14px/1.6 'Noto Sans TC'; color: #9A7A6C; margin: 8px 0 16px;">{{ returnQuestion }}</div>
+              <div style="font: 500 14px/1.6 'Noto Sans TC'; color: #9A7A6C; margin: 8px 0 16px;">回程是否與去程相同？若不同，再分別填寫回程各接駁車人數。</div>
               <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
                 <button onclick="{{ h.returnSame }}" style="padding: 16px; background: {{ sameBg }}; border: 2.5px solid #2E2A24; border-radius: 14px; cursor: pointer; font: 900 18px 'Noto Serif TC'; color: {{ sameColor }}; box-shadow: 4px 4px 0 rgba(46,42,36,.15);">與去程相同</button>
                 <button onclick="{{ h.returnDiff }}" style="padding: 16px; background: {{ diffBg }}; border: 2.5px solid #2E2A24; border-radius: 14px; cursor: pointer; font: 900 18px 'Noto Serif TC'; color: {{ diffColor }}; box-shadow: 4px 4px 0 rgba(46,42,36,.15);">不同</button>
               </div>
-
-              <!-- 不同 → 選回程方式 -->
               <sc-if value="{{ returnIsDiff }}" hint-placeholder-val="{{ false }}">
                 <div style="margin-top: 16px; animation: up .35s ease both;">
-                  <div style="font: 900 14px 'Noto Sans TC'; color: #2E2A24; margin-bottom: 10px;">回程交通方式</div>
-                  <div style="display: grid; gap: 10px;">
-                    <sc-for list="{{ returnOpts }}" as="o" hint-placeholder-count="3">
-                      <button onclick="{{ o.on }}" style="display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 14px 18px; background: {{ o.bg }}; border: 2.5px solid #2E2A24; border-radius: 14px; cursor: pointer; box-shadow: 4px 4px 0 rgba(46,42,36,.15);">
-                        <div style="text-align: left;"><div style="font: 900 17px 'Noto Serif TC'; color: {{ o.color }};">{{ o.label }}</div><div style="font: 500 11px 'Noto Sans TC'; color: {{ o.sub }};">{{ o.en }}</div></div>
-                        <span style="font: 700 16px 'Noto Sans TC'; color: {{ o.color }};">{{ o.mark }}</span>
-                      </button>
-                    </sc-for>
+                  <div style="display: flex; align-items: center; justify-content: space-between; background: #FCE9DF; border: 2.5px solid #2E2A24; border-radius: 14px; box-shadow: 4px 4px 0 rgba(46,42,36,.14); padding: 11px 16px; margin-bottom: 14px;">
+                    <span style="font: 700 13px 'Noto Sans TC'; color: #2E2A24;">已安排接駁 <b style="color:#D9654E;">{{ returnAssigned }}</b> / 出席 {{ partyCount }} 人</span>
+                    <span style="font: 700 13px 'Noto Sans TC'; color: #9A7A6C;">其餘 {{ returnSelf }} 人自行</span>
                   </div>
-
-                  <!-- 回程新竹:各下車地點分別填人數 -->
-                  <sc-if value="{{ returnIsHsinchu }}" hint-placeholder-val="{{ false }}">
-                    <div style="margin-top: 14px; background: #fff; border: 2.5px solid #2E2A24; border-radius: 16px; box-shadow: 5px 5px 0 rgba(46,42,36,.16); padding: 16px; animation: up .35s ease both;">
-                      <div style="font: 900 14px 'Noto Sans TC'; color: #2E2A24;">下車地點與人數</div>
-                      <div style="font: 500 12px/1.6 'Noto Sans TC'; color: #9A7A6C; margin: 4px 0 12px;">一家人可於不同地點下車,請分別填寫各點人數。</div>
-                      <div style="display: grid; gap: 8px;">
-                        <sc-for list="{{ returnStops }}" as="s" hint-placeholder-count="4">
-                          <div style="display: flex; align-items: center; gap: 10px; padding: 9px 11px; background: {{ s.bg }}; border: 2px solid #2E2A24; border-radius: 11px;">
-                            <span style="flex: none; width: 22px; height: 22px; border-radius: 50%; background: {{ s.dotBg }}; color: {{ s.dotColor }}; border: 2px solid #2E2A24; font: 900 11px 'Noto Sans TC'; display: flex; align-items: center; justify-content: center;">{{ s.num }}</span>
-                            <span style="flex: 1; font: 700 14px 'Noto Sans TC'; color: #2E2A24;">{{ s.label }}</span>
-                            <div style="flex: none; display: flex; align-items: center; gap: 8px;">
-                              <button onclick="{{ s.onDec }}" style="width: 30px; height: 30px; border-radius: 8px; border: 2px solid #2E2A24; background: #FBF4EA; color: #D9654E; font: 900 16px 'Noto Serif TC'; cursor: pointer;">−</button>
-                              <span style="font: 900 19px 'Noto Serif TC'; color: #D9654E; min-width: 18px; text-align: center;">{{ s.count }}</span>
-                              <button onclick="{{ s.onInc }}" style="width: 30px; height: 30px; border-radius: 8px; border: 2px solid #2E2A24; background: #FBF4EA; color: #D9654E; font: 900 16px 'Noto Serif TC'; cursor: pointer;">+</button>
-                            </div>
+                  <div style="background: #fff; border: 2.5px solid #2E2A24; border-radius: 16px; box-shadow: 4px 4px 0 rgba(46,42,36,.14); padding: 14px 16px; margin-bottom: 12px;">
+                    <div style="font: 900 15px 'Noto Serif TC'; color: #D9654E; margin-bottom: 2px;">新竹接駁車</div>
+                    <div style="font: 500 12px/1.6 'Noto Sans TC'; color: #9A7A6C; margin-bottom: 10px;">於各下車地點下車。</div>
+                    <div style="display: grid; gap: 8px;">
+                      <sc-for list="{{ returnStops }}" as="s" hint-placeholder-count="4">
+                        <div style="display: flex; align-items: center; gap: 10px; padding: 9px 11px; background: {{ s.bg }}; border: 2px solid #2E2A24; border-radius: 11px;">
+                          <span style="flex: none; width: 22px; height: 22px; border-radius: 50%; background: {{ s.dotBg }}; color: {{ s.dotColor }}; border: 2px solid #2E2A24; font: 900 11px 'Noto Sans TC'; display: flex; align-items: center; justify-content: center;">{{ s.num }}</span>
+                          <span style="flex: 1; font: 700 14px 'Noto Sans TC'; color: #2E2A24;">{{ s.label }}</span>
+                          <div style="flex: none; display: flex; align-items: center; gap: 8px;">
+                            <button onclick="{{ s.onDec }}" style="width: 30px; height: 30px; border-radius: 8px; border: 2px solid #2E2A24; background: #FBF4EA; color: #D9654E; font: 900 16px 'Noto Serif TC'; cursor: pointer;">−</button>
+                            <span style="font: 900 19px 'Noto Serif TC'; color: #D9654E; min-width: 18px; text-align: center;">{{ s.count }}</span>
+                            <button onclick="{{ s.onInc }}" disabled="{{ returnFull }}" style="width: 30px; height: 30px; border-radius: 8px; border: 2px solid #2E2A24; background: #FBF4EA; color: #D9654E; font: 900 16px 'Noto Serif TC'; cursor: pointer;">+</button>
                           </div>
-                        </sc-for>
-                      </div>
-                      <div style="margin-top: 12px; display: flex; align-items: center; justify-content: space-between; padding-top: 12px; border-top: 1.5px solid #F0DDCF;">
-                        <span style="font: 900 14px 'Noto Sans TC'; color: #2E2A24;">合計</span>
-                        <span style="font: 900 18px 'Noto Serif TC'; color: #D9654E;">{{ returnTotal }} 人</span>
-                      </div>
-                      <div style="margin-top: 10px; font: 500 12px/1.6 'Noto Sans TC'; color: #B8A89A;">※ 屆時將依表單填寫結果安排與調整路線。</div>
-                    </div>
-                  </sc-if>
-
-                  <!-- 回程豐原:人數 -->
-                  <sc-if value="{{ returnIsFengyuan }}" hint-placeholder-val="{{ false }}">
-                    <div style="margin-top: 14px; background: #fff; border: 2.5px solid #2E2A24; border-radius: 16px; box-shadow: 5px 5px 0 rgba(46,42,36,.16); padding: 16px; animation: up .35s ease both;">
-                      <div style="font: 500 13px/1.6 'Noto Sans TC'; color: #9A7A6C; margin-bottom: 12px;">接駁專車於宴會結束後送往 <b style="color:#2E2A24;">豐原火車站</b>。</div>
-                      <div style="display: flex; align-items: center; justify-content: space-between;">
-                        <span style="font: 900 15px 'Noto Sans TC'; color: #2E2A24;">搭乘人數</span>
-                        <div style="display: flex; align-items: center; gap: 12px;">
-                          <button onclick="{{ h.returnCountDec }}" style="width: 36px; height: 36px; border-radius: 10px; border: 2px solid #2E2A24; background: #FBF4EA; color: #D9654E; font: 900 20px 'Noto Serif TC'; cursor: pointer;">−</button>
-                          <span style="font: 900 26px 'Noto Serif TC'; color: #D9654E; min-width: 24px; text-align: center;">{{ returnCount }}</span>
-                          <button onclick="{{ h.returnCountInc }}" style="width: 36px; height: 36px; border-radius: 10px; border: 2px solid #2E2A24; background: #FBF4EA; color: #D9654E; font: 900 20px 'Noto Serif TC'; cursor: pointer;">+</button>
                         </div>
-                      </div>
+                      </sc-for>
                     </div>
-                  </sc-if>
+                  </div>
+                  <div style="display: flex; align-items: center; justify-content: space-between; background: #fff; border: 2.5px solid #2E2A24; border-radius: 16px; box-shadow: 4px 4px 0 rgba(46,42,36,.14); padding: 14px 16px;">
+                    <div><div style="font: 900 15px 'Noto Serif TC'; color: #D9654E;">豐原接駁車</div><div style="font: 500 12px 'Noto Sans TC'; color: #9A7A6C;">送往豐原火車站</div></div>
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                      <button onclick="{{ h.returnCountDec }}" style="width: 34px; height: 34px; border-radius: 9px; border: 2px solid #2E2A24; background: #FBF4EA; color: #D9654E; font: 900 18px 'Noto Serif TC'; cursor: pointer;">−</button>
+                      <span style="font: 900 24px 'Noto Serif TC'; color: #D9654E; min-width: 22px; text-align: center;">{{ returnFengyuan }}</span>
+                      <button onclick="{{ h.returnCountInc }}" disabled="{{ returnFull }}" style="width: 34px; height: 34px; border-radius: 9px; border: 2px solid #2E2A24; background: #FBF4EA; color: #D9654E; font: 900 18px 'Noto Serif TC'; cursor: pointer;">+</button>
+                    </div>
+                  </div>
                 </div>
               </sc-if>
             </div>
@@ -1234,15 +1191,19 @@ class Component extends DCLogic {
       side: null, relation: null, attend: null, email: '',
       count: 1,
       party: [{ name: '', diet: 'meat', child: false }],
-      transOut: null, outStopCounts: [0, 0, 0, 0], outCount: 1,
-      returnSame: null, transReturn: null, returnStopCounts: [0, 0, 0, 0], returnCount: 1,
+      outStopCounts: [0, 0, 0, 0], outCount: 0,
+      returnSame: null, returnStopCounts: [0, 0, 0, 0], returnCount: 0,
       name: '', blessing: ''
     }
   };
 
   GFORM = {
-    action: 'https://script.google.com/macros/s/AKfycbywM25sBV-9bYwEMerPDCbvwJMPqKWP-_V3jtksAWKHpqrQE1RXbexR1oLt-qQKUxzU/exec',
-    fields: { side:'side', relation:'relation', attend:'attend', count:'count', party:'party', transOut:'transOut', transReturn:'transReturn', email:'email', name:'name', blessing:'blessing' }
+    action: 'https://docs.google.com/forms/d/e/FORM_ID/formResponse',
+    fields: {
+      side: 'entry.1000001', relation: 'entry.1000010', attend: 'entry.1000002', count: 'entry.1000003',
+      party: 'entry.1000004', transOut: 'entry.1000005', transReturn: 'entry.1000006',
+      email: 'entry.1000011', name: 'entry.1000007', blessing: 'entry.1000008'
+    }
   };
 
   sum(arr) { return arr.reduce((x, y) => x + y, 0); }
@@ -1265,18 +1226,7 @@ class Component extends DCLogic {
   canNext() {
     const a = this.state.a, key = this.flow()[this.state.idx];
     if (key === 'party') return a.party.every(p => p.name && p.name.trim());
-    if (key === 'transOut') {
-      if (a.transOut === null) return false;
-      if (a.transOut === 'hsinchu') return this.sum(a.outStopCounts) > 0;
-      return true;
-    }
-    if (key === 'transReturn') {
-      if (a.returnSame === null) return false;
-      if (a.returnSame === true) return true;
-      if (a.transReturn === null) return false;
-      if (a.transReturn === 'hsinchu') return this.sum(a.returnStopCounts) > 0;
-      return true;
-    }
+    if (key === 'transReturn') return a.returnSame !== null;
     if (key === 'email') return this.validEmail(a.email);
     if (key === 'message') return a.attend === 'attend' ? true : !!(a.name && a.name.trim());
     return true;
@@ -1293,7 +1243,7 @@ class Component extends DCLogic {
     this.setState(s => {
       const party = [];
       for (let i = 0; i < n; i++) party.push(s.a.party[i] || { name: '', diet: 'meat', child: false });
-      return { a: { ...s.a, count: n, party } };
+      return { a: { ...s.a, count: n, party, outStopCounts: [0, 0, 0, 0], outCount: 0, returnSame: null, returnStopCounts: [0, 0, 0, 0], returnCount: 0 } };
     });
   }
   setPartyName(i, val) { this.setState(s => { const p = s.a.party.map((x, j) => j === i ? { ...x, name: val } : x); return { a: { ...s.a, party: p }, perr: false }; }); }
@@ -1302,7 +1252,33 @@ class Component extends DCLogic {
 
   chooseTransOut(v) { this.setState(s => ({ a: { ...s.a, transOut: v } })); }
   chooseTransReturn(v) { this.setState(s => ({ a: { ...s.a, transReturn: v } })); }
-  bumpStop(field, i, d) { this.setState(s => { const c = [...s.a[field]]; const _o = c.reduce((x,y)=>x+y,0) - c[i]; const _cap = Math.max(0, s.a.count - _o); c[i] = Math.max(0, Math.min(_cap, c[i] + d)); return { a: { ...s.a, [field]: c } }; }); }
+  outAssigned(a) { return this.sum(a.outStopCounts) + a.outCount; }
+  returnAssigned(a) { return this.sum(a.returnStopCounts) + a.returnCount; }
+  bumpStop(field, i, d) {
+    this.setState(s => {
+      const a = s.a;
+      const assigned = field === 'outStopCounts' ? this.outAssigned(a) : this.returnAssigned(a);
+      if (d > 0 && assigned >= a.count) return {};
+      const c = [...a[field]]; c[i] = Math.max(0, c[i] + d);
+      return { a: { ...a, [field]: c } };
+    });
+  }
+  bumpFengyuan(field, d) {
+    this.setState(s => {
+      const a = s.a;
+      const assigned = field === 'outCount' ? this.outAssigned(a) : this.returnAssigned(a);
+      if (d > 0 && assigned >= a.count) return {};
+      return { a: { ...a, [field]: Math.max(0, a[field] + d) } };
+    });
+  }
+  allocStr(stopCounts, fengyuan, self) {
+    const parts = [];
+    const stops = this.STOPS.map((s, i) => stopCounts[i] > 0 ? s + stopCounts[i] + '人' : null).filter(Boolean);
+    if (stops.length) parts.push('新竹接駁(' + stops.join('、') + ')');
+    if (fengyuan > 0) parts.push('豐原接駁' + fengyuan + '人');
+    if (self > 0) parts.push('自行' + self + '人');
+    return parts.join('；') || '自行前往';
+  }
 
   async submit() {
     const a = this.state.a;
@@ -1310,39 +1286,27 @@ class Component extends DCLogic {
     if (!nm || !nm.trim()) { this.setState({ err: true }); return; }
     this.setState({ submitting: true });
     try {
-      const g = this.GFORM;
-      if (g.action.indexOf('FORM_ID') === -1) {
-        const partyStr = a.party.map(p => (p.name || '').trim() + ':' + (p.diet === 'veg' ? '素' : '葷') + (p.child ? '(兒童座椅)' : '')).join('; ');
-        const stopsStr = counts => this.STOPS.map((s, i) => counts[i] > 0 ? s + ' ' + counts[i] + '人' : null).filter(Boolean).join('、');
-        const outName = v => v === 'hsinchu' ? '新竹接駁車' : v === 'fengyuan' ? '豐原接駁車' : '自行前往';
-        const retName = v => v === 'hsinchu' ? '新竹接駁車' : v === 'fengyuan' ? '豐原接駁車' : '自行回家';
-        let outStr = outName(a.transOut);
-        if (a.transOut === 'hsinchu') outStr += '/上車:' + stopsStr(a.outStopCounts);
-        else if (a.transOut === 'fengyuan') outStr += '/' + a.outCount + '人';
-        let retStr;
-        if (a.returnSame === true) retStr = '與去程相同';
-        else { retStr = retName(a.transReturn); if (a.transReturn === 'hsinchu') retStr += '/下車:' + stopsStr(a.returnStopCounts); else if (a.transReturn === 'fengyuan') retStr += '/' + a.returnCount + '人'; }
-        const relMap = { relative: '親戚', colleague: '同事', friend: '好友' };
-        const b = new URLSearchParams();
-        b.append(g.fields.side, a.side === 'groom' ? '男方親友' : '女方親友');
-        b.append(g.fields.relation, relMap[a.relation] || '');
-        b.append(g.fields.email, (a.email || '').trim());
-        b.append(g.fields.attend, a.attend === 'attend' ? '出席' : (a.attend === 'absentInvite' ? '無法出席(索取喜帖)' : '無法出席'));
-        b.append(g.fields.count, a.attend === 'attend' ? String(a.count) : '0');
-        b.append(g.fields.party, a.attend === 'attend' ? partyStr : '');
-        b.append(g.fields.transOut, a.attend === 'attend' ? outStr : '');
-        b.append(g.fields.transReturn, a.attend === 'attend' ? retStr : '');
-        b.append(g.fields.name, nm.trim());
-        b.append(g.fields.blessing, a.blessing || '');
-        await fetch(g.action, { method: 'POST', mode: 'no-cors', body: b });
-      } else { await new Promise(r => setTimeout(r, 700)); }
+      const partyStr = a.party.map(p => (p.name || '').trim() + ':' + (p.diet === 'veg' ? '素' : '葷') + (p.child ? '(兒童座椅)' : '')).join('; ');
+      const relMap = { relative: '親戚', colleague: '同事', friend: '好友' };
+      const b = new URLSearchParams();
+      b.append('side', a.side === 'groom' ? '男方親友' : '女方親友');
+      b.append('relation', relMap[a.relation] || '');
+      b.append('email', (a.email || '').trim());
+      b.append('attend', a.attend === 'attend' ? '出席' : (a.attend === 'absentInvite' ? '無法出席(索取喜帖)' : '無法出席'));
+      b.append('count', a.attend === 'attend' ? String(a.count) : '0');
+      b.append('party', a.attend === 'attend' ? partyStr : '');
+      b.append('transOut', a.attend === 'attend' ? this.allocStr(a.outStopCounts, a.outCount, a.count - this.outAssigned(a)) : '');
+      b.append('transReturn', a.attend === 'attend' ? (a.returnSame === true ? '與去程相同' : this.allocStr(a.returnStopCounts, a.returnCount, a.count - this.returnAssigned(a))) : '');
+      b.append('name', nm.trim());
+      b.append('blessing', a.blessing || '');
+      await fetch('https://script.google.com/macros/s/AKfycbywM25sBV-9bYwEMerPDCbvwJMPqKWP-_V3jtksAWKHpqrQE1RXbexR1oLt-qQKUxzU/exec', { method: 'POST', mode: 'no-cors', body: b });
     } catch (e) {}
     this.setState({ submitting: false, screen: 'done' });
   }
   restart() {
     this.setState({
       screen: 'cover', idx: 0, err: false, perr: false, submitting: false,
-      a: { side: null, relation: null, attend: null, email: '', count: 1, party: [{ name: '', diet: 'meat', child: false }], transOut: null, outStopCounts: [0, 0, 0, 0], outCount: 1, returnSame: null, transReturn: null, returnStopCounts: [0, 0, 0, 0], returnCount: 1, name: '', blessing: '' }
+      a: { side: null, relation: null, attend: null, email: '', count: 1, party: [{ name: '', diet: 'meat', child: false }], outStopCounts: [0, 0, 0, 0], outCount: 0, returnSame: null, returnStopCounts: [0, 0, 0, 0], returnCount: 0, name: '', blessing: '' }
     });
   }
 
@@ -1359,14 +1323,8 @@ class Component extends DCLogic {
     if (a.attend === 'attend') {
       const people = a.party.map(p => ((p.name || '').trim() || '(未填)') + '·' + (p.diet === 'veg' ? '素' : '葷') + (p.child ? '·兒童椅' : '')).join('、');
       rows.push({ label: '出席者', value: '共 ' + a.count + ' 位:' + people });
-      let outStr = outName(a.transOut);
-      if (a.transOut === 'hsinchu') outStr += '　' + stopsStr(a.outStopCounts);
-      else if (a.transOut === 'fengyuan') outStr += '　' + a.outCount + ' 人';
-      rows.push({ label: '去程', value: outStr });
-      let retStr;
-      if (a.returnSame === true) retStr = '與去程相同';
-      else { retStr = retName(a.transReturn); if (a.transReturn === 'hsinchu') retStr += '　' + stopsStr(a.returnStopCounts); else if (a.transReturn === 'fengyuan') retStr += '　' + a.returnCount + ' 人'; }
-      rows.push({ label: '回程', value: retStr });
+      rows.push({ label: '去程', value: this.allocStr(a.outStopCounts, a.outCount, a.count - this.outAssigned(a)) });
+      rows.push({ label: '回程', value: a.returnSame === true ? '與去程相同' : this.allocStr(a.returnStopCounts, a.returnCount, a.count - this.returnAssigned(a)) });
     }
     if (a.attend === 'attend' || a.attend === 'absentInvite') rows.push({ label: '電子喜帖', value: a.email || '—' });
     if (a.attend !== 'attend') rows.push({ label: '大名', value: (a.name || '—').trim() });
@@ -1426,10 +1384,10 @@ class Component extends DCLogic {
       start: () => this.setState({ screen: 'form', idx: 0 }),
       sideGroom: () => this.set('side', 'groom', true), sideBride: () => this.set('side', 'bride', true),
       countDec: () => this.setCount(a.count - 1), countInc: () => this.setCount(a.count + 1),
-      outCountDec: () => this.setState(s => ({ a: { ...s.a, outCount: Math.max(1, s.a.outCount - 1) } })),
-      outCountInc: () => this.setState(s => ({ a: { ...s.a, outCount: Math.min(s.a.count, s.a.outCount + 1) } })),
-      returnCountDec: () => this.setState(s => ({ a: { ...s.a, returnCount: Math.max(1, s.a.returnCount - 1) } })),
-      returnCountInc: () => this.setState(s => ({ a: { ...s.a, returnCount: Math.min(s.a.count, s.a.returnCount + 1) } })),
+      outCountDec: () => this.bumpFengyuan('outCount', -1),
+      outCountInc: () => this.bumpFengyuan('outCount', 1),
+      returnCountDec: () => this.bumpFengyuan('returnCount', -1),
+      returnCountInc: () => this.bumpFengyuan('returnCount', 1),
       returnSame: () => this.setState(s => ({ a: { ...s.a, returnSame: true } })),
       returnDiff: () => this.setState(s => ({ a: { ...s.a, returnSame: false } })),
       next: () => this.next(), prev: () => this.prev(), tryNext: () => this.tryNext(),
@@ -1485,18 +1443,19 @@ class Component extends DCLogic {
       progressPct: Math.round((st.idx + 1) / total * 100),
       showNextBtn, nextBg: cn ? coral : '#EAD9CE', nextColor: cn ? '#FFFFFF' : '#B7A99C',
       partyCount: a.count, partyRows,
-      outOpts: this.transOptArr(a.transOut, (v) => this.chooseTransOut(v), '自行前往', 'Self-arranged'),
-      outIsHsinchu: a.transOut === 'hsinchu', outIsFengyuan: a.transOut === 'fengyuan',
       outStops: this.stopArr('outStopCounts'),
-      outTotal: this.sum(a.outStopCounts), outCount: a.outCount,
-      returnQuestion: '你的回程是否與去程相同?若不同,再請你選擇回程方式。',
+      outFengyuan: a.outCount,
+      outAssigned: this.outAssigned(a),
+      outSelf: Math.max(0, a.count - this.outAssigned(a)),
+      outFull: this.outAssigned(a) >= a.count,
       sameBg: a.returnSame === true ? coral : '#FFFFFF', sameColor: a.returnSame === true ? '#FFFFFF' : dark,
       diffBg: a.returnSame === false ? coral : '#FFFFFF', diffColor: a.returnSame === false ? '#FFFFFF' : dark,
       returnIsDiff: a.returnSame === false,
-      returnOpts: this.transOptArr(a.transReturn, (v) => this.chooseTransReturn(v), '自行回家', 'Going home myself'),
-      returnIsHsinchu: a.transReturn === 'hsinchu', returnIsFengyuan: a.transReturn === 'fengyuan',
       returnStops: this.stopArr('returnStopCounts'),
-      returnTotal: this.sum(a.returnStopCounts), returnCount: a.returnCount,
+      returnFengyuan: a.returnCount,
+      returnAssigned: this.returnAssigned(a),
+      returnSelf: Math.max(0, a.count - this.returnAssigned(a)),
+      returnFull: this.returnAssigned(a) >= a.count,
       nameVal: a.name, blessingVal: a.blessing,
       err: st.err, submitting: st.submitting, submitLabel: st.submitting ? '送出中…' : '送出回覆 →',
       doneText: a.attend === 'attend' ? '我們已收到你的出席與接駁資訊,當天 15:00 開始入席,期待與你相聚!' : (a.attend === 'absentInvite' ? '雖然這次無法相見,我們會將電子喜帖寄到你的信箱,謝謝你的祝福!' : '感謝你撥空回覆,雖然這次無法相見,你的祝福我們已收下。'),

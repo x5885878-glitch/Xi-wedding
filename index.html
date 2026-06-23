@@ -4,6 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="runtime.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet"><title>睿誠 ♥ 郁淳 婚禮邀請</title>
+<style>body, body *{overflow-wrap:anywhere;}</style>
 </head>
 <body>
 <x-dc>
@@ -1122,7 +1123,7 @@
                 <sc-for list="{{ confirmRows }}" as="r" hint-placeholder-count="4">
                   <div style="display: flex; align-items: flex-start; gap: 12px; padding: 11px 0; border-bottom: 1.5px solid #F0DDCF;">
                     <span style="flex: none; width: 78px; font: 900 13px 'Noto Sans TC'; color: #D9654E;">{{ r.label }}</span>
-                    <span style="flex: 1; font: 500 15px/1.5 'Noto Sans TC'; color: #2E2A24;">{{ r.value }}</span>
+                    <span style="flex: 1; min-width: 0; overflow-wrap: anywhere; word-break: break-word; font: 500 15px/1.5 'Noto Sans TC'; color: #2E2A24;">{{ r.value }}</span>
                   </div>
                 </sc-for>
               </div>

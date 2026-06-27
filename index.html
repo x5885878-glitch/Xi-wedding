@@ -849,7 +849,7 @@
       <div style="min-height: calc(100vh - 30px); display: flex; flex-direction: column;">
 
         <!-- 導航列:返回 + 進度 + 下一步(併在上方) -->
-        <div style="display: flex; align-items: center; gap: 12px; padding: 20px 24px 6px; max-width: 480px; margin: 0 auto; width: 100%;">
+        <div style="position: sticky; top: 30px; z-index: 9; background: #FBF4EA; box-shadow: 0 6px 12px -6px rgba(46,42,36,.18); display: flex; align-items: center; gap: 12px; padding: 12px 24px 12px; max-width: 480px; margin: 0 auto; width: 100%;">
           <button onclick="{{ h.prev }}" title="上一步" style="flex: none; background: #fff; border: 2px solid #2E2A24; border-radius: 999px; width: 40px; height: 40px; color: #2E2A24; font: 700 17px 'Noto Sans TC'; cursor: pointer; box-shadow: 3px 3px 0 rgba(46,42,36,.16);" style-hover="background: #2E2A24; color: #FBF4EA;">←</button>
           <div style="flex: 1;">
             <div style="font: 900 11px 'Noto Sans TC'; letter-spacing: 1px; color: #D9654E; margin-bottom: 4px;">{{ progressText }}</div>
@@ -935,17 +935,17 @@
               <div style="position: relative; background: #fff; border: 2.5px solid #2E2A24; border-radius: 18px; box-shadow: 6px 6px 0 rgba(46,42,36,.16); padding: 24px 22px;">
                 <div style="position: absolute; left: 78px; top: 34px; bottom: 34px; width: 3px; background: #F0D2C5; transform-origin: top; animation: growLine .6s ease both .2s;"></div>
                 <div style="position: relative; display: flex; align-items: center; gap: 18px; padding: 6px 0;">
-                  <div style="width: 52px; text-align: right; font: 900 19px 'Noto Serif TC'; color: #D9654E;">15:00</div>
+                  <div style="width: 60px; text-align: right; white-space: nowrap; font: 900 19px 'Noto Serif TC'; color: #D9654E;">14:00</div>
                   <div style="width: 16px; height: 16px; border-radius: 50%; background: #D9654E; border: 3px solid #fff; box-shadow: 0 0 0 2px #D9654E; animation: dotPop .4s ease both .3s;"></div>
                   <div><div style="font: 900 18px 'Noto Serif TC'; color: #2E2A24;">到場 · 入席</div><div style="font: 500 12px 'Noto Sans TC'; color: #9A7A6C;">Welcome &amp; seating</div></div>
                 </div>
                 <div style="position: relative; display: flex; align-items: center; gap: 18px; padding: 14px 0;">
-                  <div style="width: 52px; text-align: right; font: 900 19px 'Noto Serif TC'; color: #D9654E;">16:00</div>
+                  <div style="width: 60px; text-align: right; white-space: nowrap; font: 900 19px 'Noto Serif TC'; color: #D9654E;">15:00</div>
                   <div style="width: 16px; height: 16px; border-radius: 50%; background: #D9654E; border: 3px solid #fff; box-shadow: 0 0 0 2px #D9654E; animation: dotPop .4s ease both .45s;"></div>
                   <div><div style="font: 900 18px 'Noto Serif TC'; color: #2E2A24;">證婚儀式</div><div style="font: 500 12px 'Noto Sans TC'; color: #9A7A6C;">Wedding ceremony</div></div>
                 </div>
                 <div style="position: relative; display: flex; align-items: center; gap: 18px; padding: 6px 0;">
-                  <div style="width: 52px; text-align: right; font: 900 19px 'Noto Serif TC'; color: #D9654E;">17:30</div>
+                  <div style="width: 60px; text-align: right; white-space: nowrap; font: 900 19px 'Noto Serif TC'; color: #D9654E;">16:30</div>
                   <div style="width: 16px; height: 16px; border-radius: 50%; background: #D9654E; border: 3px solid #fff; box-shadow: 0 0 0 2px #D9654E; animation: dotPop .4s ease both .6s;"></div>
                   <div><div style="font: 900 18px 'Noto Serif TC'; color: #2E2A24;">晚宴開始</div><div style="font: 500 12px 'Noto Sans TC'; color: #9A7A6C;">Reception dinner</div></div>
                 </div>
@@ -1040,44 +1040,36 @@
                 <span style="font: 900 64px/1 'Noto Serif TC'; color: #F0D2C5;">{{ qNum }}</span>
                 <div><div style="font: 700 11px 'Noto Sans TC'; letter-spacing: 3px; text-transform: uppercase; color: #D9654E;">Shuttle · 回程</div><h2 style="margin: 4px 0 0; font: 900 30px 'Noto Serif TC'; color: #2E2A24;">回程安排</h2></div>
               </div>
-              <div style="font: 500 14px/1.6 'Noto Sans TC'; color: #9A7A6C; margin: 8px 0 16px;">回程是否與去程相同？若不同，再分別填寫回程各接駁車人數。</div>
-              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
-                <button onclick="{{ h.returnSame }}" style="padding: 16px; background: {{ sameBg }}; border: 2.5px solid #2E2A24; border-radius: 14px; cursor: pointer; font: 900 18px 'Noto Serif TC'; color: {{ sameColor }}; box-shadow: 4px 4px 0 rgba(46,42,36,.15);">與去程相同</button>
-                <button onclick="{{ h.returnDiff }}" style="padding: 16px; background: {{ diffBg }}; border: 2.5px solid #2E2A24; border-radius: 14px; cursor: pointer; font: 900 18px 'Noto Serif TC'; color: {{ diffColor }}; box-shadow: 4px 4px 0 rgba(46,42,36,.15);">不同</button>
+              <div style="font: 500 14px/1.7 'Noto Sans TC'; color: #9A7A6C; margin: 8px 0 14px;">請填寫回程搭乘各接駁車的人數，未填的視為自行返回。</div>
+              <div style="display: flex; align-items: center; justify-content: space-between; background: #FCE9DF; border: 2.5px solid #2E2A24; border-radius: 14px; box-shadow: 4px 4px 0 rgba(46,42,36,.14); padding: 11px 16px; margin-bottom: 14px;">
+                <span style="font: 700 13px 'Noto Sans TC'; color: #2E2A24;">已安排接駁 <b style="color:#D9654E;">{{ returnAssigned }}</b> / 出席 {{ partyCount }} 人</span>
+                <span style="font: 700 13px 'Noto Sans TC'; color: #9A7A6C;">其餘 {{ returnSelf }} 人自行</span>
               </div>
-              <sc-if value="{{ returnIsDiff }}" hint-placeholder-val="{{ false }}">
-                <div style="margin-top: 16px; animation: up .35s ease both;">
-                  <div style="display: flex; align-items: center; justify-content: space-between; background: #FCE9DF; border: 2.5px solid #2E2A24; border-radius: 14px; box-shadow: 4px 4px 0 rgba(46,42,36,.14); padding: 11px 16px; margin-bottom: 14px;">
-                    <span style="font: 700 13px 'Noto Sans TC'; color: #2E2A24;">已安排接駁 <b style="color:#D9654E;">{{ returnAssigned }}</b> / 出席 {{ partyCount }} 人</span>
-                    <span style="font: 700 13px 'Noto Sans TC'; color: #9A7A6C;">其餘 {{ returnSelf }} 人自行</span>
-                  </div>
-                  <div style="background: #fff; border: 2.5px solid #2E2A24; border-radius: 16px; box-shadow: 4px 4px 0 rgba(46,42,36,.14); padding: 14px 16px; margin-bottom: 12px;">
-                    <div style="font: 900 15px 'Noto Serif TC'; color: #D9654E; margin-bottom: 2px;">新竹接駁車</div>
-                    <div style="font: 500 12px/1.6 'Noto Sans TC'; color: #9A7A6C; margin-bottom: 10px;">於各下車地點下車。</div>
-                    <div style="display: grid; gap: 8px;">
-                      <sc-for list="{{ returnStops }}" as="s" hint-placeholder-count="4">
-                        <div style="display: flex; align-items: center; gap: 10px; padding: 9px 11px; background: {{ s.bg }}; border: 2px solid #2E2A24; border-radius: 11px;">
-                          <span style="flex: none; width: 22px; height: 22px; border-radius: 50%; background: {{ s.dotBg }}; color: {{ s.dotColor }}; border: 2px solid #2E2A24; font: 900 11px 'Noto Sans TC'; display: flex; align-items: center; justify-content: center;">{{ s.num }}</span>
-                          <span style="flex: 1; font: 700 14px 'Noto Sans TC'; color: #2E2A24;">{{ s.label }}</span>
-                          <div style="flex: none; display: flex; align-items: center; gap: 8px;">
-                            <button onclick="{{ s.onDec }}" style="width: 30px; height: 30px; border-radius: 8px; border: 2px solid #2E2A24; background: #FBF4EA; color: #D9654E; font: 900 16px 'Noto Serif TC'; cursor: pointer;">−</button>
-                            <span style="font: 900 19px 'Noto Serif TC'; color: #D9654E; min-width: 18px; text-align: center;">{{ s.count }}</span>
-                            <button onclick="{{ s.onInc }}" disabled="{{ returnFull }}" style="width: 30px; height: 30px; border-radius: 8px; border: 2px solid #2E2A24; background: #FBF4EA; color: #D9654E; font: 900 16px 'Noto Serif TC'; cursor: pointer;">+</button>
-                          </div>
-                        </div>
-                      </sc-for>
+              <div style="background: #fff; border: 2.5px solid #2E2A24; border-radius: 16px; box-shadow: 4px 4px 0 rgba(46,42,36,.14); padding: 14px 16px; margin-bottom: 12px;">
+                <div style="font: 900 15px 'Noto Serif TC'; color: #D9654E; margin-bottom: 2px;">新竹接駁車</div>
+                <div style="font: 500 12px/1.6 'Noto Sans TC'; color: #9A7A6C; margin-bottom: 10px;">於各下車地點下車。</div>
+                <div style="display: grid; gap: 8px;">
+                  <sc-for list="{{ returnStops }}" as="s" hint-placeholder-count="4">
+                    <div style="display: flex; align-items: center; gap: 10px; padding: 9px 11px; background: {{ s.bg }}; border: 2px solid #2E2A24; border-radius: 11px;">
+                      <span style="flex: none; width: 22px; height: 22px; border-radius: 50%; background: {{ s.dotBg }}; color: {{ s.dotColor }}; border: 2px solid #2E2A24; font: 900 11px 'Noto Sans TC'; display: flex; align-items: center; justify-content: center;">{{ s.num }}</span>
+                      <span style="flex: 1; font: 700 14px 'Noto Sans TC'; color: #2E2A24;">{{ s.label }}</span>
+                      <div style="flex: none; display: flex; align-items: center; gap: 8px;">
+                        <button onclick="{{ s.onDec }}" style="width: 30px; height: 30px; border-radius: 8px; border: 2px solid #2E2A24; background: #FBF4EA; color: #D9654E; font: 900 16px 'Noto Serif TC'; cursor: pointer;">−</button>
+                        <span style="font: 900 19px 'Noto Serif TC'; color: #D9654E; min-width: 18px; text-align: center;">{{ s.count }}</span>
+                        <button onclick="{{ s.onInc }}" disabled="{{ returnFull }}" style="width: 30px; height: 30px; border-radius: 8px; border: 2px solid #2E2A24; background: #FBF4EA; color: #D9654E; font: 900 16px 'Noto Serif TC'; cursor: pointer;">+</button>
+                      </div>
                     </div>
-                  </div>
-                  <div style="display: flex; align-items: center; justify-content: space-between; background: #fff; border: 2.5px solid #2E2A24; border-radius: 16px; box-shadow: 4px 4px 0 rgba(46,42,36,.14); padding: 14px 16px;">
-                    <div><div style="font: 900 15px 'Noto Serif TC'; color: #D9654E;">豐原接駁車</div><div style="font: 500 12px 'Noto Sans TC'; color: #9A7A6C;">送往豐原火車站</div></div>
-                    <div style="display: flex; align-items: center; gap: 12px;">
-                      <button onclick="{{ h.returnCountDec }}" style="width: 34px; height: 34px; border-radius: 9px; border: 2px solid #2E2A24; background: #FBF4EA; color: #D9654E; font: 900 18px 'Noto Serif TC'; cursor: pointer;">−</button>
-                      <span style="font: 900 24px 'Noto Serif TC'; color: #D9654E; min-width: 22px; text-align: center;">{{ returnFengyuan }}</span>
-                      <button onclick="{{ h.returnCountInc }}" disabled="{{ returnFull }}" style="width: 34px; height: 34px; border-radius: 9px; border: 2px solid #2E2A24; background: #FBF4EA; color: #D9654E; font: 900 18px 'Noto Serif TC'; cursor: pointer;">+</button>
-                    </div>
-                  </div>
+                  </sc-for>
                 </div>
-              </sc-if>
+              </div>
+              <div style="display: flex; align-items: center; justify-content: space-between; background: #fff; border: 2.5px solid #2E2A24; border-radius: 16px; box-shadow: 4px 4px 0 rgba(46,42,36,.14); padding: 14px 16px;">
+                <div><div style="font: 900 15px 'Noto Serif TC'; color: #D9654E;">豐原接駁車</div><div style="font: 500 12px 'Noto Sans TC'; color: #9A7A6C;">送往豐原火車站</div></div>
+                <div style="display: flex; align-items: center; gap: 12px;">
+                  <button onclick="{{ h.returnCountDec }}" style="width: 34px; height: 34px; border-radius: 9px; border: 2px solid #2E2A24; background: #FBF4EA; color: #D9654E; font: 900 18px 'Noto Serif TC'; cursor: pointer;">−</button>
+                  <span style="font: 900 24px 'Noto Serif TC'; color: #D9654E; min-width: 22px; text-align: center;">{{ returnFengyuan }}</span>
+                  <button onclick="{{ h.returnCountInc }}" disabled="{{ returnFull }}" style="width: 34px; height: 34px; border-radius: 9px; border: 2px solid #2E2A24; background: #FBF4EA; color: #D9654E; font: 900 18px 'Noto Serif TC'; cursor: pointer;">+</button>
+                </div>
+              </div>
             </div>
           </sc-if>
 
@@ -1132,17 +1124,17 @@
                 <div style="margin-top: 16px; background: #FCE9DF; border: 2.5px solid #2E2A24; border-radius: 16px; box-shadow: 5px 5px 0 rgba(46,42,36,.16); padding: 18px 20px;">
                   <div style="font: 700 11px 'Noto Sans TC'; letter-spacing: 3px; text-transform: uppercase; color: #D9654E; margin-bottom: 12px;">當天流程 · Program</div>
                   <div style="display: flex; align-items: center; gap: 14px; padding: 5px 0;">
-                    <span style="width: 50px; font: 900 18px 'Noto Serif TC'; color: #D9654E;">15:00</span>
+                    <span style="width: 56px; white-space: nowrap; font: 900 18px 'Noto Serif TC'; color: #D9654E;">14:00</span>
                     <span style="width: 9px; height: 9px; border-radius: 50%; background: #D9654E;"></span>
                     <span style="font: 900 16px 'Noto Serif TC'; color: #2E2A24;">到場 · 入席</span>
                   </div>
                   <div style="display: flex; align-items: center; gap: 14px; padding: 5px 0;">
-                    <span style="width: 50px; font: 900 18px 'Noto Serif TC'; color: #D9654E;">16:00</span>
+                    <span style="width: 56px; white-space: nowrap; font: 900 18px 'Noto Serif TC'; color: #D9654E;">15:00</span>
                     <span style="width: 9px; height: 9px; border-radius: 50%; background: #D9654E;"></span>
                     <span style="font: 900 16px 'Noto Serif TC'; color: #2E2A24;">證婚儀式</span>
                   </div>
                   <div style="display: flex; align-items: center; gap: 14px; padding: 5px 0;">
-                    <span style="width: 50px; font: 900 18px 'Noto Serif TC'; color: #D9654E;">17:30</span>
+                    <span style="width: 56px; white-space: nowrap; font: 900 18px 'Noto Serif TC'; color: #D9654E;">16:30</span>
                     <span style="width: 9px; height: 9px; border-radius: 50%; background: #D9654E;"></span>
                     <span style="font: 900 16px 'Noto Serif TC'; color: #2E2A24;">晚宴開始</span>
                   </div>
@@ -1227,7 +1219,7 @@ class Component extends DCLogic {
   canNext() {
     const a = this.state.a, key = this.flow()[this.state.idx];
     if (key === 'party') return a.party.every(p => p.name && p.name.trim());
-    if (key === 'transReturn') return a.returnSame !== null;
+    // 去程/回程不強制，可直接下一步
     if (key === 'email') return this.validEmail(a.email);
     if (key === 'message') return a.attend === 'attend' ? true : !!(a.name && a.name.trim());
     return true;
@@ -1297,7 +1289,7 @@ class Component extends DCLogic {
       b.append('count', a.attend === 'attend' ? String(a.count) : '0');
       b.append('party', a.attend === 'attend' ? partyStr : '');
       b.append('transOut', a.attend === 'attend' ? this.allocStr(a.outStopCounts, a.outCount, a.count - this.outAssigned(a)) : '');
-      b.append('transReturn', a.attend === 'attend' ? (a.returnSame === true ? '與去程相同' : this.allocStr(a.returnStopCounts, a.returnCount, a.count - this.returnAssigned(a))) : '');
+      b.append('transReturn', a.attend === 'attend' ? this.allocStr(a.returnStopCounts, a.returnCount, a.count - this.returnAssigned(a)) : '');
       b.append('name', nm.trim());
       b.append('blessing', a.blessing || '');
       await fetch('https://script.google.com/macros/s/AKfycbywM25sBV-9bYwEMerPDCbvwJMPqKWP-_V3jtksAWKHpqrQE1RXbexR1oLt-qQKUxzU/exec', { method: 'POST', mode: 'no-cors', body: b });
@@ -1325,7 +1317,7 @@ class Component extends DCLogic {
       const people = a.party.map(p => ((p.name || '').trim() || '(未填)') + '·' + (p.diet === 'veg' ? '素' : '葷') + (p.child ? '·兒童椅' : '')).join('、');
       rows.push({ label: '出席者', value: '共 ' + a.count + ' 位:' + people });
       rows.push({ label: '去程', value: this.allocStr(a.outStopCounts, a.outCount, a.count - this.outAssigned(a)) });
-      rows.push({ label: '回程', value: a.returnSame === true ? '與去程相同' : this.allocStr(a.returnStopCounts, a.returnCount, a.count - this.returnAssigned(a)) });
+      rows.push({ label: '回程', value: this.allocStr(a.returnStopCounts, a.returnCount, a.count - this.returnAssigned(a)) });
     }
     if (a.attend === 'attend' || a.attend === 'absentInvite') rows.push({ label: '電子喜帖', value: a.email || '—' });
     if (a.attend !== 'attend') rows.push({ label: '大名', value: (a.name || '—').trim() });
@@ -1449,9 +1441,6 @@ class Component extends DCLogic {
       outAssigned: this.outAssigned(a),
       outSelf: Math.max(0, a.count - this.outAssigned(a)),
       outFull: this.outAssigned(a) >= a.count,
-      sameBg: a.returnSame === true ? coral : '#FFFFFF', sameColor: a.returnSame === true ? '#FFFFFF' : dark,
-      diffBg: a.returnSame === false ? coral : '#FFFFFF', diffColor: a.returnSame === false ? '#FFFFFF' : dark,
-      returnIsDiff: a.returnSame === false,
       returnStops: this.stopArr('returnStopCounts'),
       returnFengyuan: a.returnCount,
       returnAssigned: this.returnAssigned(a),

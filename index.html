@@ -1319,8 +1319,8 @@ class Component extends DCLogic {
   setPartyDiet(i, diet) { this.setState(s => { const p = s.a.party.map((x, j) => j === i ? { ...x, diet } : x); return { a: { ...s.a, party: p } }; }); }
   toggleChild(i) { this.setState(s => { const p = s.a.party.map((x, j) => j === i ? (x.child ? { ...x, child: false, childAge: null, childSeat: false, stroller: false } : { ...x, child: true }) : x); return { a: { ...s.a, party: p } }; }); }
   setChildAge(i, age) { this.setState(s => { const p = s.a.party.map((x, j) => j === i ? { ...x, childAge: x.childAge === age ? null : age } : x); return { a: { ...s.a, party: p } }; }); }
-  toggleChildSeat(i) { this.setState(s => { const p = s.a.party.map((x, j) => j === i ? { ...x, childSeat: !x.childSeat } : x); return { a: { ...s.a, party: p } }; }); }
-  toggleStroller(i) { this.setState(s => { const p = s.a.party.map((x, j) => j === i ? { ...x, stroller: !x.stroller } : x); return { a: { ...s.a, party: p } }; }); }
+  toggleChildSeat(i) { this.setState(s => { const p = s.a.party.map((x, j) => j === i ? { ...x, childSeat: !x.childSeat, stroller: false } : x); return { a: { ...s.a, party: p } }; }); }
+  toggleStroller(i) { this.setState(s => { const p = s.a.party.map((x, j) => j === i ? { ...x, stroller: !x.stroller, childSeat: false } : x); return { a: { ...s.a, party: p } }; }); }
 
   chooseTransOut(v) { this.setState(s => ({ a: { ...s.a, transOut: v } })); }
   chooseTransReturn(v) { this.setState(s => ({ a: { ...s.a, transReturn: v } })); }

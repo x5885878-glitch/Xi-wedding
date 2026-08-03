@@ -875,14 +875,12 @@
                 </div>
               </div>
               <div style="display: grid; gap: 12px; margin-top: 20px;">
-                <button onclick="{{ q.optA.on }}" style="display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 20px 22px; background: {{ q.optA.bg }}; border: 2.5px solid #2E2A24; border-radius: 16px; cursor: pointer; box-shadow: 5px 5px 0 rgba(46,42,36,.16); transition: transform .15s;" style-hover="transform: translate(-2px,-2px);">
-                  <div style="text-align: left;"><div style="font: 900 22px 'Noto Serif TC'; color: {{ q.optA.color }};">{{ q.optA.label }}</div><div style="font: 500 12px 'Noto Sans TC'; letter-spacing: 1px; color: {{ q.optA.sub }};">{{ q.optA.en }}</div></div>
-                  <span style="font: 700 20px 'Noto Sans TC'; color: {{ q.optA.color }};">{{ q.optA.mark }}</span>
-                </button>
-                <button onclick="{{ q.optB.on }}" style="display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 20px 22px; background: {{ q.optB.bg }}; border: 2.5px solid #2E2A24; border-radius: 16px; cursor: pointer; box-shadow: 5px 5px 0 rgba(46,42,36,.16); transition: transform .15s;" style-hover="transform: translate(-2px,-2px);">
-                  <div style="text-align: left;"><div style="font: 900 22px 'Noto Serif TC'; color: {{ q.optB.color }};">{{ q.optB.label }}</div><div style="font: 500 12px 'Noto Sans TC'; letter-spacing: 1px; color: {{ q.optB.sub }};">{{ q.optB.en }}</div></div>
-                  <span style="font: 700 20px 'Noto Sans TC'; color: {{ q.optB.color }};">{{ q.optB.mark }}</span>
-                </button>
+                <sc-for list="{{ sideOpts }}" as="o" hint-placeholder-count="3">
+                  <button onclick="{{ o.on }}" style="display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 20px 22px; background: {{ o.bg }}; border: 2.5px solid #2E2A24; border-radius: 16px; cursor: pointer; box-shadow: 5px 5px 0 rgba(46,42,36,.16); transition: transform .15s;" style-hover="transform: translate(-2px,-2px);">
+                    <div style="text-align: left;"><div style="font: 900 22px 'Noto Serif TC'; color: {{ o.color }};">{{ o.label }}</div><div style="font: 500 12px 'Noto Sans TC'; letter-spacing: 1px; color: {{ o.sub }};">{{ o.en }}</div></div>
+                    <span style="font: 700 20px 'Noto Sans TC'; color: {{ o.color }};">{{ o.mark }}</span>
+                  </button>
+                </sc-for>
               </div>
             </div>
           </sc-if>
@@ -989,7 +987,7 @@
               </div>
               <div style="margin-top: 16px; background: #FCE9DF; border: 2.5px solid #2E2A24; border-radius: 16px; box-shadow: 5px 5px 0 rgba(46,42,36,.16); padding: 16px 18px;">
                 <div style="font: 700 13px 'Noto Sans TC'; color: #D9654E; margin-bottom: 6px;">🚌 接駁車小提醒</div>
-                <div style="font: 500 13px/1.8 'Noto Sans TC'; color: #2E2A24;">參加全程的親友，我們提供「新竹 → 會場」與「豐原火車站 → 會場」的接駁車（回程也有），也可以自行前往；選「參加全程」後，接下來會請你安排搭車人數。只參加晚宴則請自行前往會場。</div>
+                <div style="font: 500 13px/1.8 'Noto Sans TC'; color: #2E2A24;">接駁車路線：「新竹 ⇄ 會場」與「豐原火車站 ⇄ 會場」。<b>參加全程</b>：去程、回程接駁都可搭乘；<b>只參加證婚</b>：可搭去程接駁；<b>只參加晚宴</b>：可搭回程接駁。也都可以自行前往，選好後接下來會請你安排搭車人數。</div>
               </div>
             </div>
           </sc-if>
@@ -1001,7 +999,7 @@
                 <span style="font: 900 64px/1 'Noto Serif TC'; color: #F0D2C5;">{{ qNum }}</span>
                 <div><div style="font: 700 11px 'Noto Sans TC'; letter-spacing: 3px; text-transform: uppercase; color: #D9654E;">Seating</div><h2 style="margin: 4px 0 0; font: 900 30px 'Noto Serif TC'; color: #2E2A24;">出席資訊</h2></div>
               </div>
-              <div style="font: 500 14px/1.6 'Noto Sans TC'; color: #9A7A6C; margin: 8px 0 16px;">座位將事先安排,請填寫每位出席者的姓名、餐點與兒童座椅需求。</div>
+              <div style="font: 500 14px/1.6 'Noto Sans TC'; color: #9A7A6C; margin: 8px 0 16px;">座位將事先安排,請<b style="color: #D9654E;">務必填寫全名</b>,方便我們排座位;並選擇餐點與兒童需求。</div>
 
               <div style="display: flex; align-items: center; justify-content: space-between; background: #fff; border: 2.5px solid #2E2A24; border-radius: 14px; box-shadow: 4px 4px 0 rgba(46,42,36,.14); padding: 12px 16px; margin-bottom: 14px;">
                 <span style="font: 900 16px 'Noto Sans TC'; color: #2E2A24;">出席總人數</span>
@@ -1018,12 +1016,25 @@
                     <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
                       <span style="flex: none; background: #F0D2C5; color: #2E2A24; font: 900 11px 'Noto Sans TC'; padding: 3px 9px; border-radius: 999px;">{{ row.label }}</span>
                     </div>
-                    <input value="{{ row.name }}" onchange="{{ row.onName }}" placeholder="姓名" style="width: 100%; padding: 11px 13px; background: #FBF4EA; border: 2px solid #2E2A24; border-radius: 10px; font: 700 16px 'Noto Sans TC'; color: #2E2A24; outline: none;">
+                    <input value="{{ row.name }}" onchange="{{ row.onName }}" placeholder="全名" style="width: 100%; padding: 11px 13px; background: #FBF4EA; border: 2px solid #2E2A24; border-radius: 10px; font: 700 16px 'Noto Sans TC'; color: #2E2A24; outline: none;">
                     <div style="display: flex; align-items: center; gap: 10px; margin-top: 11px;">
                       <span style="font: 900 13px 'Noto Sans TC'; color: #9A7A6C;">餐點</span>
                       <button onclick="{{ row.onMeat }}" style="flex: 1; padding: 9px 0; border: 2px solid #2E2A24; border-radius: 9px; background: {{ row.meatBg }}; color: {{ row.meatColor }}; font: 900 15px 'Noto Serif TC'; cursor: pointer;">葷</button>
                       <button onclick="{{ row.onVeg }}" style="flex: 1; padding: 9px 0; border: 2px solid #2E2A24; border-radius: 9px; background: {{ row.vegBg }}; color: {{ row.vegColor }}; font: 900 15px 'Noto Serif TC'; cursor: pointer;">素</button>
-                      <button onclick="{{ row.onChild }}" style="flex: none; display: flex; align-items: center; gap: 5px; padding: 9px 12px; border: 2px solid #2E2A24; border-radius: 9px; background: {{ row.childBg }}; color: {{ row.childColor }}; font: 900 13px 'Noto Sans TC'; cursor: pointer;">{{ row.childMark }} 兒童椅</button>
+                      <button onclick="{{ row.onChild }}" style="flex: none; display: flex; align-items: center; gap: 5px; padding: 9px 12px; border: 2px solid #2E2A24; border-radius: 9px; background: {{ row.childBg }}; color: {{ row.childColor }}; font: 900 13px 'Noto Sans TC'; cursor: pointer;">{{ row.childMark }} 兒童</button>
+                    </div>
+                    <div style="display: {{ row.childPanel }}; margin-top: 11px; background: #FBF4EA; border: 2px dashed #D9654E; border-radius: 10px; padding: 11px 12px;">
+                      <div style="display: flex; align-items: center; gap: 8px;">
+                        <span style="flex: none; font: 900 13px 'Noto Sans TC'; color: #9A7A6C;">年齡</span>
+                        <button onclick="{{ row.onAge0 }}" style="flex: 1; padding: 8px 0; border: 2px solid #2E2A24; border-radius: 9px; background: {{ row.age0Bg }}; color: {{ row.age0Color }}; font: 900 13px 'Noto Sans TC'; cursor: pointer;">0-1歲</button>
+                        <button onclick="{{ row.onAge1 }}" style="flex: 1; padding: 8px 0; border: 2px solid #2E2A24; border-radius: 9px; background: {{ row.age1Bg }}; color: {{ row.age1Color }}; font: 900 13px 'Noto Sans TC'; cursor: pointer;">2-5歲</button>
+                        <button onclick="{{ row.onAge2 }}" style="flex: 1; padding: 8px 0; border: 2px solid #2E2A24; border-radius: 9px; background: {{ row.age2Bg }}; color: {{ row.age2Color }}; font: 900 13px 'Noto Sans TC'; cursor: pointer;">6-12歲</button>
+                      </div>
+                      <div style="display: flex; align-items: center; gap: 8px; margin-top: 9px;">
+                        <span style="flex: none; font: 900 13px 'Noto Sans TC'; color: #9A7A6C;">需求</span>
+                        <button onclick="{{ row.onSeat }}" style="flex: 1; padding: 8px 0; border: 2px solid #2E2A24; border-radius: 9px; background: {{ row.seatBg }}; color: {{ row.seatColor }}; font: 900 13px 'Noto Sans TC'; cursor: pointer;">{{ row.seatMark }} 需要兒童椅</button>
+                        <button onclick="{{ row.onStroll }}" style="flex: 1; padding: 8px 0; border: 2px solid #2E2A24; border-radius: 9px; background: {{ row.strollBg }}; color: {{ row.strollColor }}; font: 900 13px 'Noto Sans TC'; cursor: pointer;">{{ row.strollMark }} 自備推車</button>
+                      </div>
                     </div>
                   </div>
                 </sc-for>
@@ -1119,11 +1130,15 @@
             <div style="width: 100%; max-width: 420px; animation: qInA .5s cubic-bezier(.3,1.1,.4,1) both;">
               <div style="display: flex; align-items: baseline; gap: 14px;">
                 <span style="font: 900 64px/1 'Noto Serif TC'; color: #F0D2C5;">{{ qNum }}</span>
-                <div><div style="font: 700 11px 'Noto Sans TC'; letter-spacing: 3px; text-transform: uppercase; color: #D9654E;">E-invite</div><h2 style="margin: 4px 0 0; font: 900 30px 'Noto Serif TC'; color: #2E2A24;">電子喜帖</h2></div>
+                <div><div style="font: 700 11px 'Noto Sans TC'; letter-spacing: 3px; text-transform: uppercase; color: #D9654E;">Contact</div><h2 style="margin: 4px 0 0; font: 900 30px 'Noto Serif TC'; color: #2E2A24;">{{ contactTitle }}</h2></div>
               </div>
-              <div style="font: 500 14px/1.6 'Noto Sans TC'; color: #9A7A6C; margin: 8px 0 18px;">我們會將電子喜帖與當天資訊寄到你的信箱,請留下 email。</div>
+              <div style="font: 500 14px/1.6 'Noto Sans TC'; color: #9A7A6C; margin: 8px 0 18px;">{{ contactSub }}</div>
+              <div style="font: 900 13px 'Noto Sans TC'; color: #2E2A24; margin-bottom: 7px;">Email</div>
               <input value="{{ emailVal }}" onchange="{{ h.setEmail }}" placeholder="your@email.com" style="width: 100%; padding: 16px 18px; background: #fff; border: 2.5px solid #2E2A24; border-radius: 14px; font: 700 17px 'Noto Sans TC'; color: #2E2A24; outline: none; box-shadow: 4px 4px 0 rgba(46,42,36,.12);">
               <div style="font: 500 13px 'Noto Sans TC'; color: {{ emailHintColor }}; margin-top: 9px;">{{ emailHint }}</div>
+              <div style="font: 900 13px 'Noto Sans TC'; color: #2E2A24; margin: 16px 0 7px;">手機號碼</div>
+              <input value="{{ phoneVal }}" onchange="{{ h.setPhone }}" placeholder="0912 345 678" style="width: 100%; padding: 16px 18px; background: #fff; border: 2.5px solid #2E2A24; border-radius: 14px; font: 700 17px 'Noto Sans TC'; color: #2E2A24; outline: none; box-shadow: 4px 4px 0 rgba(46,42,36,.12);">
+              <div style="font: 500 13px 'Noto Sans TC'; color: {{ phoneHintColor }}; margin-top: 9px;">{{ phoneHint }}</div>
             </div>
           </sc-if>
 
@@ -1222,9 +1237,9 @@ class Component extends DCLogic {
   state = {
     screen: 'cover', idx: 0, submitting: false, err: false, perr: false,
     a: {
-      side: null, relation: null, attend: null, scope: null, email: '',
+      side: null, relation: null, attend: null, scope: null, email: '', phone: '',
       count: 1,
-      party: [{ name: '', diet: 'meat', child: false }],
+      party: [{ name: '', diet: 'meat', child: false, childAge: null, childSeat: false, stroller: false }],
       outStopCounts: [0, 0, 0, 0], outCount: 0,
       returnSame: null, returnStopCounts: [0, 0, 0, 0], returnCount: 0,
       name: '', blessing: ''
@@ -1241,6 +1256,14 @@ class Component extends DCLogic {
   };
 
   sum(arr) { return arr.reduce((x, y) => x + y, 0); }
+  childStr(p) {
+    if (!p.child) return '';
+    const bits = [];
+    if (p.childAge) bits.push(p.childAge + '歲');
+    if (p.childSeat) bits.push('兒童椅');
+    if (p.stroller) bits.push('自備推車');
+    return '(兒童' + (bits.length ? ':' + bits.join('·') : '') + ')';
+  }
   submitterName() { const a = this.state.a; return a.attend === 'attend' ? ((a.party[0] && a.party[0].name) || '') : a.name; }
 
   flow() {
@@ -1248,7 +1271,8 @@ class Component extends DCLogic {
     const s = ['side', 'relation', 'attend'];
     if (a.attend === 'attend') {
       s.push('schedule', 'scope', 'party');
-      if (a.scope !== 'dinner') s.push('transOut', 'transReturn');
+      if (a.scope !== 'dinner') s.push('transOut');
+      if (a.scope !== 'ceremony') s.push('transReturn');
     }
     if (a.attend === 'attend' || a.attend === 'absentInvite') s.push('email');
     s.push('message', 'confirm');
@@ -1260,11 +1284,19 @@ class Component extends DCLogic {
   prev() { if (this.state.idx > 0) this.setState({ idx: this.state.idx - 1, perr: false }); else this.setState({ screen: 'cover' }); }
 
   validEmail(e) { return /.+@.+\..+/.test((e || '').trim()); }
+  validPhone(p) { return (p || '').replace(/\D/g, '').length >= 8; }
+  contactOk() {
+    const a = this.state.a;
+    if (a.attend !== 'attend') return this.validEmail(a.email);
+    const eEmpty = !(a.email || '').trim(), pEmpty = !(a.phone || '').trim();
+    const eOk = this.validEmail(a.email), pOk = this.validPhone(a.phone);
+    return (eOk || pOk) && (eEmpty || eOk) && (pEmpty || pOk);
+  }
   canNext() {
     const a = this.state.a, key = this.flow()[this.state.idx];
     if (key === 'party') return a.party.every(p => p.name && p.name.trim());
     // 去程/回程不強制，可直接下一步
-    if (key === 'email') return this.validEmail(a.email);
+    if (key === 'email') return this.contactOk();
     if (key === 'message') return a.attend === 'attend' ? true : !!(a.name && a.name.trim());
     return true;
   }
@@ -1279,13 +1311,16 @@ class Component extends DCLogic {
     n = Math.max(1, Math.min(10, n));
     this.setState(s => {
       const party = [];
-      for (let i = 0; i < n; i++) party.push(s.a.party[i] || { name: '', diet: 'meat', child: false });
+      for (let i = 0; i < n; i++) party.push(s.a.party[i] || { name: '', diet: 'meat', child: false, childAge: null, childSeat: false, stroller: false });
       return { a: { ...s.a, count: n, party, outStopCounts: [0, 0, 0, 0], outCount: 0, returnSame: null, returnStopCounts: [0, 0, 0, 0], returnCount: 0 } };
     });
   }
   setPartyName(i, val) { this.setState(s => { const p = s.a.party.map((x, j) => j === i ? { ...x, name: val } : x); return { a: { ...s.a, party: p }, perr: false }; }); }
   setPartyDiet(i, diet) { this.setState(s => { const p = s.a.party.map((x, j) => j === i ? { ...x, diet } : x); return { a: { ...s.a, party: p } }; }); }
-  toggleChild(i) { this.setState(s => { const p = s.a.party.map((x, j) => j === i ? { ...x, child: !x.child } : x); return { a: { ...s.a, party: p } }; }); }
+  toggleChild(i) { this.setState(s => { const p = s.a.party.map((x, j) => j === i ? (x.child ? { ...x, child: false, childAge: null, childSeat: false, stroller: false } : { ...x, child: true }) : x); return { a: { ...s.a, party: p } }; }); }
+  setChildAge(i, age) { this.setState(s => { const p = s.a.party.map((x, j) => j === i ? { ...x, childAge: x.childAge === age ? null : age } : x); return { a: { ...s.a, party: p } }; }); }
+  toggleChildSeat(i) { this.setState(s => { const p = s.a.party.map((x, j) => j === i ? { ...x, childSeat: !x.childSeat } : x); return { a: { ...s.a, party: p } }; }); }
+  toggleStroller(i) { this.setState(s => { const p = s.a.party.map((x, j) => j === i ? { ...x, stroller: !x.stroller } : x); return { a: { ...s.a, party: p } }; }); }
 
   chooseTransOut(v) { this.setState(s => ({ a: { ...s.a, transOut: v } })); }
   chooseTransReturn(v) { this.setState(s => ({ a: { ...s.a, transReturn: v } })); }
@@ -1323,14 +1358,15 @@ class Component extends DCLogic {
     if (!nm || !nm.trim()) { this.setState({ err: true }); return; }
     this.setState({ submitting: true });
     try {
-      const partyStr = a.party.map(p => (p.name || '').trim() + ':' + (p.diet === 'veg' ? '素' : '葷') + (p.child ? '(兒童座椅)' : '')).join('; ');
-      const relMap = { relative: '親戚', colleague: '同事', friend: '好友' };
+      const partyStr = a.party.map(p => (p.name || '').trim() + ':' + (p.diet === 'veg' ? '素' : '葷') + this.childStr(p)).join('; ');
+      const relMap = { relative: '家人/親戚', colleague: '同事', friend: '好友' };
       const b = new URLSearchParams();
-      b.append('side', a.side === 'groom' ? '男方親友' : '女方親友');
+      b.append('side', a.side === 'groom' ? '男方親友' : (a.side === 'bride' ? '女方親友' : '雙方麻吉'));
       b.append('relation', relMap[a.relation] || '');
       b.append('email', (a.email || '').trim());
+      b.append('phone', (a.phone || '').trim());
       b.append('attend', a.attend === 'attend' ? '出席' : (a.attend === 'absentInvite' ? '無法出席(索取喜帖)' : '無法出席'));
-      b.append('scope', a.attend === 'attend' ? (a.scope === 'dinner' ? '僅晚宴' : '全程') : '');
+      b.append('scope', a.attend === 'attend' ? (a.scope === 'dinner' ? '僅晚宴' : (a.scope === 'ceremony' ? '僅證婚' : '全程')) : '');
       b.append('count', a.attend === 'attend' ? String(a.count) : '0');
       b.append('party', a.attend === 'attend' ? partyStr : '');
       b.append('transOut', a.attend === 'attend' ? this.allocStr(a.outStopCounts, a.outCount, a.count - this.outAssigned(a)) : '');
@@ -1344,13 +1380,13 @@ class Component extends DCLogic {
   restart() {
     this.setState({
       screen: 'cover', idx: 0, err: false, perr: false, submitting: false,
-      a: { side: null, relation: null, attend: null, scope: null, email: '', count: 1, party: [{ name: '', diet: 'meat', child: false }], outStopCounts: [0, 0, 0, 0], outCount: 0, returnSame: null, returnStopCounts: [0, 0, 0, 0], returnCount: 0, name: '', blessing: '' }
+      a: { side: null, relation: null, attend: null, scope: null, email: '', phone: '', count: 1, party: [{ name: '', diet: 'meat', child: false, childAge: null, childSeat: false, stroller: false }], outStopCounts: [0, 0, 0, 0], outCount: 0, returnSame: null, returnStopCounts: [0, 0, 0, 0], returnCount: 0, name: '', blessing: '' }
     });
   }
 
   buildConfirm(a) {
-    const sideMap = { groom: '男方親友', bride: '女方親友' };
-    const relMap = { relative: '親戚', colleague: '同事', friend: '好友' };
+    const sideMap = { groom: '男方親友', bride: '女方親友', both: '兩個都偶麻吉' };
+    const relMap = { relative: '家人/親戚', colleague: '同事', friend: '好友' };
     const attendMap = { attend: '開心出席', absentInvite: '無法出席(想收喜帖)', absent: '無法出席' };
     const outName = v => v === 'hsinchu' ? '新竹接駁車' : v === 'fengyuan' ? '豐原接駁車' : v === 'self' ? '自行前往' : '—';
     const retName = v => v === 'hsinchu' ? '新竹接駁車' : v === 'fengyuan' ? '豐原接駁車' : v === 'self' ? '自行回家' : '—';
@@ -1359,15 +1395,13 @@ class Component extends DCLogic {
     rows.push({ label: '親友', value: (sideMap[a.side] || '—') + '・' + (relMap[a.relation] || '—') });
     rows.push({ label: '出席', value: attendMap[a.attend] || '—' });
     if (a.attend === 'attend') {
-      rows.push({ label: '場次', value: a.scope === 'dinner' ? '只參加晚宴 (17:00)' : '全程 (證婚＋晚宴)' });
-      const people = a.party.map(p => ((p.name || '').trim() || '(未填)') + '·' + (p.diet === 'veg' ? '素' : '葷') + (p.child ? '·兒童椅' : '')).join('、');
+      rows.push({ label: '場次', value: a.scope === 'dinner' ? '只參加晚宴 (17:00)' : (a.scope === 'ceremony' ? '只參加證婚 (15:00)' : '全程 (證婚＋晚宴)') });
+      const people = a.party.map(p => ((p.name || '').trim() || '(未填)') + '·' + (p.diet === 'veg' ? '素' : '葷') + this.childStr(p)).join('、');
       rows.push({ label: '出席者', value: '共 ' + a.count + ' 位:' + people });
-      if (a.scope !== 'dinner') {
-        rows.push({ label: '去程', value: this.allocStr(a.outStopCounts, a.outCount, a.count - this.outAssigned(a)) });
-        rows.push({ label: '回程', value: this.allocStr(a.returnStopCounts, a.returnCount, a.count - this.returnAssigned(a)) });
-      }
+      if (a.scope !== 'dinner') rows.push({ label: '去程', value: this.allocStr(a.outStopCounts, a.outCount, a.count - this.outAssigned(a)) });
+      if (a.scope !== 'ceremony') rows.push({ label: '回程', value: this.allocStr(a.returnStopCounts, a.returnCount, a.count - this.returnAssigned(a)) });
     }
-    if (a.attend === 'attend' || a.attend === 'absentInvite') rows.push({ label: '電子喜帖', value: a.email || '—' });
+    if (a.attend === 'attend' || a.attend === 'absentInvite') rows.push({ label: '聯絡方式', value: [(a.email || '').trim(), (a.phone || '').trim()].filter(Boolean).join('　/　') || '—' });
     if (a.attend !== 'attend') rows.push({ label: '大名', value: (a.name || '—').trim() });
     if (a.blessing && a.blessing.trim()) rows.push({ label: '祝福', value: a.blessing.trim() });
     return rows;
@@ -1383,23 +1417,36 @@ class Component extends DCLogic {
   }
   relationArr(selected) {
     const coral = '#D9654E', dark = '#2E2A24', mut = '#9A7A6C';
-    const defs = [['relative', '親戚', 'Family'], ['colleague', '同事', 'Colleague'], ['friend', '好友', 'Friend']];
+    const defs = [['relative', '家人 | 親戚', 'Family'], ['colleague', '同事', 'Colleague'], ['friend', '好友', 'Friend']];
     return defs.map(d => {
       const active = selected === d[0];
       return { label: d[1], en: d[2], on: () => this.set('relation', d[0], true), bg: active ? coral : '#FFFFFF', color: active ? '#FFFFFF' : dark, sub: active ? '#FBE2DA' : mut, mark: active ? '✓' : '→' };
     });
   }
 
+  sideArr(selected) {
+    const coral = '#D9654E', dark = '#2E2A24', mut = '#9A7A6C';
+    const defs = [['groom', '男方親友', "Groom's side"], ['bride', '女方親友', "Bride's side"], ['both', '兩個都偶麻吉', 'Friends of both']];
+    return defs.map(d => {
+      const active = selected === d[0];
+      return { label: d[1], en: d[2], on: () => this.set('side', d[0], true), bg: active ? coral : '#FFFFFF', color: active ? '#FFFFFF' : dark, sub: active ? '#FBE2DA' : mut, mark: active ? '✓' : '→' };
+    });
+  }
   scopeArr(selected) {
     const coral = '#D9654E', dark = '#2E2A24', mut = '#9A7A6C';
-    const defs = [['full', '參加全程（證婚＋晚宴）', 'Ceremony + dinner'], ['dinner', '只參加晚宴', 'Dinner only']];
+    const defs = [['full', '參加全程（證婚＋晚宴）', 'Ceremony + dinner'], ['ceremony', '只參加證婚', 'Ceremony only'], ['dinner', '只參加晚宴', 'Dinner only']];
     return defs.map(d => {
       const active = selected === d[0];
       return { label: d[1], en: d[2], on: () => this.setScope(d[0]), bg: active ? coral : '#FFFFFF', color: active ? '#FFFFFF' : dark, sub: active ? '#FBE2DA' : mut, mark: active ? '✓' : '→' };
     });
   }
   setScope(v) {
-    this.setState(s => ({ a: { ...s.a, scope: v, ...(v === 'dinner' ? { outStopCounts: [0, 0, 0, 0], outCount: 0, returnSame: null, returnStopCounts: [0, 0, 0, 0], returnCount: 0 } : {}) } }), () => setTimeout(() => this.next(), 340));
+    this.setState(s => {
+      const clr = {};
+      if (v === 'dinner') { clr.outStopCounts = [0, 0, 0, 0]; clr.outCount = 0; }
+      if (v === 'ceremony') { clr.returnStopCounts = [0, 0, 0, 0]; clr.returnCount = 0; clr.returnSame = null; }
+      return { a: { ...s.a, scope: v, ...clr } };
+    }, () => setTimeout(() => this.next(), 340));
   }
 
   choiceConfig(key, a, h) {
@@ -1445,6 +1492,7 @@ class Component extends DCLogic {
       returnDiff: () => this.setState(s => ({ a: { ...s.a, returnSame: false } })),
       next: () => this.next(), prev: () => this.prev(), tryNext: () => this.tryNext(),
       setEmail: (e) => this.setState(s => ({ a: { ...s.a, email: e.target.value } })),
+      setPhone: (e) => this.setState(s => ({ a: { ...s.a, phone: e.target.value } })),
       setName: (e) => this.setState(s => ({ a: { ...s.a, name: e.target.value }, err: false })),
       setBlessing: (e) => this.setState(s => ({ a: { ...s.a, blessing: e.target.value } })),
       submit: () => this.submit(), restart: () => this.restart()
@@ -1453,15 +1501,30 @@ class Component extends DCLogic {
     const q = this.choiceConfig(key, a, h);
     const blank = { label: '', en: '', on: () => {}, bg: '#FFF', color: dark, sub: '#9A7A6C', mark: '→' };
 
-    const partyRows = a.party.map((p, i) => ({
-      label: i === 0 ? '本人' : '同行 ' + i,
-      name: p.name,
-      onName: (e) => this.setPartyName(i, e.target.value),
-      meatBg: p.diet === 'meat' ? coral : '#FFFFFF', meatColor: p.diet === 'meat' ? '#FFFFFF' : dark,
-      vegBg: p.diet === 'veg' ? coral : '#FFFFFF', vegColor: p.diet === 'veg' ? '#FFFFFF' : dark,
-      childBg: p.child ? '#2E2A24' : '#FFFFFF', childColor: p.child ? '#FFFFFF' : dark, childMark: p.child ? '✓' : '＋',
-      onMeat: () => this.setPartyDiet(i, 'meat'), onVeg: () => this.setPartyDiet(i, 'veg'), onChild: () => this.toggleChild(i)
-    }));
+    const AGES = ['0-1', '2-5', '6-12'];
+    const partyRows = a.party.map((p, i) => {
+      const ageProps = {};
+      AGES.forEach((ag, k) => {
+        const on = p.childAge === ag;
+        ageProps['age' + k + 'Bg'] = on ? coral : '#FFFFFF';
+        ageProps['age' + k + 'Color'] = on ? '#FFFFFF' : dark;
+        ageProps['onAge' + k] = () => this.setChildAge(i, ag);
+      });
+      return {
+        label: i === 0 ? '本人' : '同行 ' + i,
+        name: p.name,
+        onName: (e) => this.setPartyName(i, e.target.value),
+        meatBg: p.diet === 'meat' ? coral : '#FFFFFF', meatColor: p.diet === 'meat' ? '#FFFFFF' : dark,
+        vegBg: p.diet === 'veg' ? coral : '#FFFFFF', vegColor: p.diet === 'veg' ? '#FFFFFF' : dark,
+        childBg: p.child ? '#2E2A24' : '#FFFFFF', childColor: p.child ? '#FFFFFF' : dark, childMark: p.child ? '✓' : '＋',
+        childPanel: p.child ? 'block' : 'none',
+        seatBg: p.childSeat ? coral : '#FFFFFF', seatColor: p.childSeat ? '#FFFFFF' : dark, seatMark: p.childSeat ? '✓' : '＋',
+        strollBg: p.stroller ? coral : '#FFFFFF', strollColor: p.stroller ? '#FFFFFF' : dark, strollMark: p.stroller ? '✓' : '＋',
+        onMeat: () => this.setPartyDiet(i, 'meat'), onVeg: () => this.setPartyDiet(i, 'veg'), onChild: () => this.toggleChild(i),
+        onSeat: () => this.toggleChildSeat(i), onStroll: () => this.toggleStroller(i),
+        ...ageProps
+      };
+    });
 
     const showNextBtn = (key === 'party' || key === 'transOut' || key === 'transReturn' || key === 'email');
     const cn = this.canNext();
@@ -1470,14 +1533,20 @@ class Component extends DCLogic {
     return {
       showCover: st.screen === 'cover', showForm: st.screen === 'form', showDone: st.screen === 'done',
       showChoice: st.screen === 'form' && key === 'side',
+      sideOpts: this.sideArr(a.side),
       showAttend: st.screen === 'form' && key === 'attend',
       attendOpts: this.attendArr(a.attend),
       showRelation: st.screen === 'form' && key === 'relation',
       relationOpts: this.relationArr(a.relation),
       showEmail: st.screen === 'form' && key === 'email',
+      contactTitle: a.attend === 'attend' ? '聯絡方式' : '電子喜帖',
+      contactSub: a.attend === 'attend' ? '我們會把回覆確認與當天資訊寄給你。Email 與手機至少填一種,聯絡資訊不會公開或外流。' : '我們會將電子喜帖與當天資訊寄到你的信箱,請留下 email。',
       emailVal: a.email,
-      emailHint: a.email === '' ? '我們不會公開或外流你的信箱。' : (emailOk ? '✓ 看起來沒問題!' : '請輸入正確的 email 格式。'),
+      emailHint: a.email === '' ? (a.attend === 'attend' ? '會用來寄回覆確認信。' : '我們不會公開或外流你的信箱。') : (emailOk ? '✓ 看起來沒問題!' : '請輸入正確的 email 格式。'),
       emailHintColor: a.email === '' ? '#9A7A6C' : (emailOk ? '#5B9A6B' : '#C0492F'),
+      phoneVal: a.phone,
+      phoneHint: a.phone === '' ? (a.attend === 'attend' ? '沒有 email 的話請至少留手機。' : '選填。') : (this.validPhone(a.phone) ? '✓ 看起來沒問題!' : '手機格式看起來不太對。'),
+      phoneHintColor: a.phone === '' ? '#9A7A6C' : (this.validPhone(a.phone) ? '#5B9A6B' : '#C0492F'),
       showSchedule: st.screen === 'form' && key === 'schedule',
       showScope: st.screen === 'form' && key === 'scope',
       scopeOpts: this.scopeArr(a.scope),

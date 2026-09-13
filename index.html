@@ -932,7 +932,7 @@
               <div style="font: 500 14px 'Noto Sans TC'; color: #9A7A6C; margin: 8px 0 18px;">2027.01.23 星期六 · 台中克里夫莊園</div>
               <div style="background: #fff; border: 2.5px solid #2E2A24; border-radius: 18px; box-shadow: 6px 6px 0 rgba(46,42,36,.16); padding: 26px 24px;">
                 <div style="display: flex; gap: 18px; align-items: stretch;">
-                  <div style="flex: none; width: 52px; text-align: right; white-space: nowrap; font: 900 19px 'Noto Serif TC'; color: #D9654E; padding-top: 1px;">14:00</div>
+                  <div style="flex: none; width: 52px; text-align: right; white-space: nowrap; font: 900 19px 'Noto Serif TC'; color: #D9654E; padding-top: 1px;">15:00</div>
                   <div style="flex: none; display: flex; flex-direction: column; align-items: center;">
                     <div style="flex: none; width: 15px; height: 15px; border-radius: 50%; background: #D9654E; border: 3px solid #fff; box-shadow: 0 0 0 2px #D9654E;"></div>
                     <div style="flex: 1; width: 3px; background: #F0D2C5; margin: 4px 0; border-radius: 2px; min-height: 14px;"></div>
@@ -943,7 +943,7 @@
                   </div>
                 </div>
                 <div style="display: flex; gap: 18px; align-items: stretch;">
-                  <div style="flex: none; width: 52px; text-align: right; white-space: nowrap; font: 900 19px 'Noto Serif TC'; color: #D9654E; padding-top: 1px;">15:00</div>
+                  <div style="flex: none; width: 52px; text-align: right; white-space: nowrap; font: 900 19px 'Noto Serif TC'; color: #D9654E; padding-top: 1px;">15:30</div>
                   <div style="flex: none; display: flex; flex-direction: column; align-items: center;">
                     <div style="flex: none; width: 15px; height: 15px; border-radius: 50%; background: #D9654E; border: 3px solid #fff; box-shadow: 0 0 0 2px #D9654E;"></div>
                     <div style="flex: 1; width: 3px; background: #F0D2C5; margin: 4px 0; border-radius: 2px; min-height: 14px;"></div>
@@ -969,6 +969,34 @@
             </div>
           </sc-if>
 
+          <!-- ░░ 服裝參考 Dress Code ░░ -->
+          <sc-if value="{{ showDress }}" hint-placeholder-val="{{ false }}">
+            <div style="width: 100%; max-width: 420px; animation: qInB .5s cubic-bezier(.3,1.1,.4,1) both;">
+              <div style="display: flex; align-items: baseline; gap: 14px;">
+                <span style="font: 900 64px/1 'Noto Serif TC'; color: #F0D2C5;">{{ qNum }}</span>
+                <div><div style="font: 700 11px 'Noto Sans TC'; letter-spacing: 3px; text-transform: uppercase; color: #D9654E;">當天穿搭</div><h2 style="margin: 4px 0 0; font: 900 30px 'Noto Serif TC'; font-style: italic; color: #2E2A24;">Dress Code</h2></div>
+              </div>
+              <div style="font: 500 14px/1.7 'Noto Sans TC'; color: #9A7A6C; margin: 8px 0 20px;">希望大家可以穿著以下色系來玩~</div>
+              <div style="position: relative; background: #FFFDF9; border: 1.5px solid #EADFCF; border-radius: 22px; padding: 30px 22px 22px; overflow: hidden;">
+                <div style="position: absolute; top: -30px; right: -30px; width: 110px; height: 110px; border-radius: 50%; background: radial-gradient(circle, rgba(217,101,78,.10), rgba(217,101,78,0) 70%);"></div>
+                <div style="font: 500 12px 'Noto Serif TC'; font-style: italic; letter-spacing: 1px; color: #B7A99C; margin-bottom: 18px;">大地色 · 深色系</div>
+                <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 22px 20px;">
+                  <sc-for list="{{ dressColors }}" as="c" hint-placeholder-count="6">
+                    <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; width: 64px; margin-top: {{ c.mt }};">
+                      <div style="width: {{ c.size }}; height: {{ c.size }}; border-radius: {{ c.radius }}; background: {{ c.bg }}; box-shadow: 0 10px 20px -8px {{ c.shadow }};"></div>
+                      <div style="font: 500 11px 'Noto Serif TC'; color: #9A7A6C; text-align: center; line-height: 1.5; letter-spacing: .3px;">{{ c.name }}</div>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+              <div style="margin-top: 14px; background: #FCE9DF; border: 2.5px solid #2E2A24; border-radius: 16px; box-shadow: 5px 5px 0 rgba(46,42,36,.16); padding: 14px 18px;">
+                <div style="font: 700 13px 'Noto Sans TC'; color: #D9654E; margin-bottom: 4px;">🤍 小提醒</div>
+                <div style="font: 500 13px/1.8 'Noto Sans TC'; color: #2E2A24;">白色 / 米色只有新娘可以穿 😄</div>
+              </div>
+              <button onclick="{{ h.next }}" style="margin-top: 18px; width: 100%; padding: 17px; background: #D9654E; color: #FBF4EA; border: none; border-radius: 14px; font: 700 16px 'Noto Sans TC'; letter-spacing: 2px; cursor: pointer; box-shadow: 5px 5px 0 rgba(46,42,36,.18);">沒問題!</button>
+            </div>
+          </sc-if>
+
           <!-- ░░ 參加場次 ░░ -->
           <sc-if value="{{ showScope }}" hint-placeholder-val="{{ false }}">
             <div style="width: 100%; max-width: 420px; animation: qInB .5s cubic-bezier(.3,1.1,.4,1) both;">
@@ -976,7 +1004,7 @@
                 <span style="font: 900 64px/1 'Noto Serif TC'; color: #F0D2C5; animation: numPop .5s cubic-bezier(.4,1.5,.5,1) both;">{{ qNum }}</span>
                 <div><div style="font: 700 11px 'Noto Sans TC'; letter-spacing: 3px; text-transform: uppercase; color: #D9654E;">Attendance</div><h2 style="margin: 4px 0 0; font: 900 30px 'Noto Serif TC'; color: #2E2A24;">想參加哪個場次?</h2></div>
               </div>
-              <div style="font: 500 14px 'Noto Sans TC'; color: #9A7A6C; margin: 8px 0 18px;">證婚儀式 15:00 開始 · 晚宴 17:00 開始。</div>
+              <div style="font: 500 14px 'Noto Sans TC'; color: #9A7A6C; margin: 8px 0 18px;">證婚儀式 15:30 開始 · 晚宴 17:00 開始。</div>
               <div style="display: grid; gap: 10px;">
                 <sc-for list="{{ scopeOpts }}" as="o" hint-placeholder-count="2">
                   <button onclick="{{ o.on }}" style="display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 18px 22px; background: {{ o.bg }}; border: 2.5px solid #2E2A24; border-radius: 16px; cursor: pointer; box-shadow: 5px 5px 0 rgba(46,42,36,.16); transition: transform .15s;" style-hover="transform: translate(-2px,-2px);">
@@ -1059,7 +1087,8 @@
               </div>
               <div style="background: #fff; border: 2.5px solid #2E2A24; border-radius: 16px; box-shadow: 4px 4px 0 rgba(46,42,36,.14); padding: 14px 16px; margin-bottom: 12px;">
                 <div style="font: 900 15px 'Noto Serif TC'; color: #D9654E; margin-bottom: 2px;">新竹接駁車</div>
-                <div style="font: 500 12px/1.6 'Noto Sans TC'; color: #9A7A6C; margin-bottom: 10px;">於各上車地點集合，依人數調整路線。</div>
+                <div style="font: 500 12px/1.6 'Noto Sans TC'; color: #9A7A6C; margin-bottom: 6px;">於各上車地點集合，依人數調整路線。</div>
+                <div style="font: 500 11px/1.6 'Noto Sans TC'; color: #C0492F; margin-bottom: 10px;">＊新埔鎮、竹東鎮確切上車地點將依報名人數統一另行通知；竹北高鐵、介壽路已是固定地點。</div>
                 <div style="display: grid; gap: 8px;">
                   <sc-for list="{{ outStops }}" as="s" hint-placeholder-count="4">
                     <div style="display: flex; align-items: center; gap: 10px; padding: 9px 11px; background: {{ s.bg }}; border: 2px solid #2E2A24; border-radius: 11px;">
@@ -1099,7 +1128,8 @@
               </div>
               <div style="background: #fff; border: 2.5px solid #2E2A24; border-radius: 16px; box-shadow: 4px 4px 0 rgba(46,42,36,.14); padding: 14px 16px; margin-bottom: 12px;">
                 <div style="font: 900 15px 'Noto Serif TC'; color: #D9654E; margin-bottom: 2px;">新竹接駁車</div>
-                <div style="font: 500 12px/1.6 'Noto Sans TC'; color: #9A7A6C; margin-bottom: 10px;">於各下車地點下車。</div>
+                <div style="font: 500 12px/1.6 'Noto Sans TC'; color: #9A7A6C; margin-bottom: 6px;">於各下車地點下車。</div>
+                <div style="font: 500 11px/1.6 'Noto Sans TC'; color: #C0492F; margin-bottom: 10px;">＊新埔鎮、竹東鎮確切下車地點將依報名人數統一另行通知；竹北高鐵、介壽路已是固定地點。</div>
                 <div style="display: grid; gap: 8px;">
                   <sc-for list="{{ returnStops }}" as="s" hint-placeholder-count="4">
                     <div style="display: flex; align-items: center; gap: 10px; padding: 9px 11px; background: {{ s.bg }}; border: 2px solid #2E2A24; border-radius: 11px;">
@@ -1180,12 +1210,12 @@
                 <div style="margin-top: 16px; background: #FCE9DF; border: 2.5px solid #2E2A24; border-radius: 16px; box-shadow: 5px 5px 0 rgba(46,42,36,.16); padding: 18px 20px;">
                   <div style="font: 700 11px 'Noto Sans TC'; letter-spacing: 3px; text-transform: uppercase; color: #D9654E; margin-bottom: 12px;">當天流程 · Program</div>
                   <div style="display: flex; align-items: center; gap: 14px; padding: 5px 0;">
-                    <span style="width: 50px; white-space: nowrap; font: 900 18px 'Noto Serif TC'; color: #D9654E;">14:00</span>
+                    <span style="width: 50px; white-space: nowrap; font: 900 18px 'Noto Serif TC'; color: #D9654E;">15:00</span>
                     <span style="width: 9px; height: 9px; border-radius: 50%; background: #D9654E;"></span>
                     <span style="font: 900 16px 'Noto Serif TC'; color: #2E2A24;">到場 · 入席</span>
                   </div>
                   <div style="display: flex; align-items: center; gap: 14px; padding: 5px 0;">
-                    <span style="width: 50px; white-space: nowrap; font: 900 18px 'Noto Serif TC'; color: #D9654E;">15:00</span>
+                    <span style="width: 50px; white-space: nowrap; font: 900 18px 'Noto Serif TC'; color: #D9654E;">15:30</span>
                     <span style="width: 9px; height: 9px; border-radius: 50%; background: #D9654E;"></span>
                     <span style="font: 900 16px 'Noto Serif TC'; color: #2E2A24;">證婚儀式</span>
                   </div>
@@ -1233,6 +1263,14 @@
 <script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;: {&quot;width&quot;: 420, &quot;height&quot;: 800}}">
 class Component extends DCLogic {
   STOPS = ['新埔鎮', '竹東鎮', '竹北高鐵', '新竹介壽路·金山街對面'];
+  DRESS_COLORS = [
+    { hex: '#D9C7A3', shadow: 'rgba(201,166,107,.35)', name: '卡其 Khaki', size: 54, mt: 0, radius: '46% 54% 58% 42% / 58% 44% 56% 42%' },
+    { hex: '#CBAB80', shadow: 'rgba(176,141,87,.35)', name: '駝色 Camel', size: 44, mt: 16, radius: '58% 42% 46% 54% / 44% 58% 42% 56%' },
+    { hex: '#AD8873', shadow: 'rgba(139,94,60,.35)', name: '咖啡棕 Coffee', size: 58, mt: 2, radius: '42% 58% 44% 56% / 56% 42% 58% 44%' },
+    { hex: '#9CAA88', shadow: 'rgba(107,122,79,.35)', name: '橄欖綠 Olive', size: 46, mt: 18, radius: '54% 46% 58% 42% / 42% 56% 44% 58%' },
+    { hex: '#B57F73', shadow: 'rgba(123,45,38,.30)', name: '酒紅 Wine', size: 50, mt: 4, radius: '44% 56% 42% 58% / 58% 44% 56% 42%' },
+    { hex: '#7A7469', shadow: 'rgba(46,42,36,.30)', name: '黑・炭灰 Charcoal', size: 42, mt: 14, radius: '56% 44% 54% 46% / 46% 58% 42% 54%' }
+  ];
 
   state = {
     screen: 'cover', idx: 0, submitting: false, err: false, perr: false,
@@ -1270,7 +1308,7 @@ class Component extends DCLogic {
     const a = this.state.a;
     const s = ['side', 'relation', 'attend'];
     if (a.attend === 'attend') {
-      s.push('schedule', 'scope', 'party');
+      s.push('schedule', 'dress', 'scope', 'party');
       if (a.scope !== 'dinner') s.push('transOut');
       if (a.scope !== 'ceremony') s.push('transReturn');
     }
@@ -1319,8 +1357,8 @@ class Component extends DCLogic {
   setPartyDiet(i, diet) { this.setState(s => { const p = s.a.party.map((x, j) => j === i ? { ...x, diet } : x); return { a: { ...s.a, party: p } }; }); }
   toggleChild(i) { this.setState(s => { const p = s.a.party.map((x, j) => j === i ? (x.child ? { ...x, child: false, childAge: null, childSeat: false, stroller: false } : { ...x, child: true }) : x); return { a: { ...s.a, party: p } }; }); }
   setChildAge(i, age) { this.setState(s => { const p = s.a.party.map((x, j) => j === i ? { ...x, childAge: x.childAge === age ? null : age } : x); return { a: { ...s.a, party: p } }; }); }
-  toggleChildSeat(i) { this.setState(s => { const p = s.a.party.map((x, j) => j === i ? { ...x, childSeat: !x.childSeat, stroller: false } : x); return { a: { ...s.a, party: p } }; }); }
-  toggleStroller(i) { this.setState(s => { const p = s.a.party.map((x, j) => j === i ? { ...x, stroller: !x.stroller, childSeat: false } : x); return { a: { ...s.a, party: p } }; }); }
+  toggleChildSeat(i) { this.setState(s => { const p = s.a.party.map((x, j) => j === i ? { ...x, childSeat: !x.childSeat } : x); return { a: { ...s.a, party: p } }; }); }
+  toggleStroller(i) { this.setState(s => { const p = s.a.party.map((x, j) => j === i ? { ...x, stroller: !x.stroller } : x); return { a: { ...s.a, party: p } }; }); }
 
   chooseTransOut(v) { this.setState(s => ({ a: { ...s.a, transOut: v } })); }
   chooseTransReturn(v) { this.setState(s => ({ a: { ...s.a, transReturn: v } })); }
@@ -1395,7 +1433,7 @@ class Component extends DCLogic {
     rows.push({ label: '親友', value: (sideMap[a.side] || '—') + '・' + (relMap[a.relation] || '—') });
     rows.push({ label: '出席', value: attendMap[a.attend] || '—' });
     if (a.attend === 'attend') {
-      rows.push({ label: '場次', value: a.scope === 'dinner' ? '只參加晚宴 (17:00)' : (a.scope === 'ceremony' ? '只參加證婚 (15:00)' : '全程 (證婚＋晚宴)') });
+      rows.push({ label: '場次', value: a.scope === 'dinner' ? '只參加晚宴 (17:00)' : (a.scope === 'ceremony' ? '只參加證婚 (15:30)' : '全程 (證婚＋晚宴)') });
       const people = a.party.map(p => ((p.name || '').trim() || '(未填)') + '·' + (p.diet === 'veg' ? '素' : '葷') + this.childStr(p)).join('、');
       rows.push({ label: '出席者', value: '共 ' + a.count + ' 位:' + people });
       if (a.scope !== 'dinner') rows.push({ label: '去程', value: this.allocStr(a.outStopCounts, a.outCount, a.count - this.outAssigned(a)) });
@@ -1548,6 +1586,8 @@ class Component extends DCLogic {
       phoneHint: a.phone === '' ? (a.attend === 'attend' ? '沒有 email 的話請至少留手機。' : '選填。') : (this.validPhone(a.phone) ? '✓ 看起來沒問題!' : '手機格式看起來不太對。'),
       phoneHintColor: a.phone === '' ? '#9A7A6C' : (this.validPhone(a.phone) ? '#5B9A6B' : '#C0492F'),
       showSchedule: st.screen === 'form' && key === 'schedule',
+      showDress: st.screen === 'form' && key === 'dress',
+      dressColors: this.DRESS_COLORS.map(c => ({ bg: c.hex, name: c.name, size: c.size + 'px', mt: c.mt + 'px', radius: c.radius, shadow: c.shadow })),
       showScope: st.screen === 'form' && key === 'scope',
       scopeOpts: this.scopeArr(a.scope),
       showParty: st.screen === 'form' && key === 'party',
@@ -1579,7 +1619,7 @@ class Component extends DCLogic {
       returnFull: this.returnAssigned(a) >= a.count,
       nameVal: a.name, blessingVal: a.blessing,
       err: st.err, submitting: st.submitting, submitLabel: st.submitting ? '送出中…' : '送出回覆 →',
-      doneText: a.attend === 'attend' ? (a.scope === 'dinner' ? '我們已收到你的出席資訊,晚宴當天 17:00 開始,期待與你相聚!' : '我們已收到你的出席與接駁資訊,當天 14:00 開始入席、15:00 證婚,期待與你相聚!') : (a.attend === 'absentInvite' ? '雖然這次無法相見,我們會將電子喜帖寄到你的信箱,謝謝你的祝福!' : '感謝你撥空回覆,雖然這次無法相見,你的祝福我們已收下。'),
+      doneText: a.attend === 'attend' ? (a.scope === 'dinner' ? '我們已收到你的出席資訊,晚宴當天 17:00 開始,期待與你相聚!' : '我們已收到你的出席與接駁資訊,當天 15:00 開始入席、15:30 證婚,期待與你相聚!') : (a.attend === 'absentInvite' ? '雖然這次無法相見,我們會將電子喜帖寄到你的信箱,謝謝你的祝福!' : '感謝你撥空回覆,雖然這次無法相見,你的祝福我們已收下。'),
       h
     };
   }

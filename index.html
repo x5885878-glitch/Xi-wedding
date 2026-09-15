@@ -1279,17 +1279,8 @@ class Component extends DCLogic {
       count: 1,
       party: [{ name: '', diet: 'meat', child: false, childAge: null, childSeat: false, stroller: false }],
       outStopCounts: [0, 0, 0, 0], outCount: 0,
-      returnSame: null, returnStopCounts: [0, 0, 0, 0], returnCount: 0,
+      returnStopCounts: [0, 0, 0, 0], returnCount: 0,
       name: '', blessing: ''
-    }
-  };
-
-  GFORM = {
-    action: 'https://docs.google.com/forms/d/e/FORM_ID/formResponse',
-    fields: {
-      side: 'entry.1000001', relation: 'entry.1000010', attend: 'entry.1000002', count: 'entry.1000003',
-      party: 'entry.1000004', transOut: 'entry.1000005', transReturn: 'entry.1000006',
-      email: 'entry.1000011', name: 'entry.1000007', blessing: 'entry.1000008'
     }
   };
 
@@ -1350,7 +1341,7 @@ class Component extends DCLogic {
     this.setState(s => {
       const party = [];
       for (let i = 0; i < n; i++) party.push(s.a.party[i] || { name: '', diet: 'meat', child: false, childAge: null, childSeat: false, stroller: false });
-      return { a: { ...s.a, count: n, party, outStopCounts: [0, 0, 0, 0], outCount: 0, returnSame: null, returnStopCounts: [0, 0, 0, 0], returnCount: 0 } };
+      return { a: { ...s.a, count: n, party, outStopCounts: [0, 0, 0, 0], outCount: 0, returnStopCounts: [0, 0, 0, 0], returnCount: 0 } };
     });
   }
   setPartyName(i, val) { this.setState(s => { const p = s.a.party.map((x, j) => j === i ? { ...x, name: val } : x); return { a: { ...s.a, party: p }, perr: false }; }); }
@@ -1360,8 +1351,6 @@ class Component extends DCLogic {
   toggleChildSeat(i) { this.setState(s => { const p = s.a.party.map((x, j) => j === i ? { ...x, childSeat: !x.childSeat } : x); return { a: { ...s.a, party: p } }; }); }
   toggleStroller(i) { this.setState(s => { const p = s.a.party.map((x, j) => j === i ? { ...x, stroller: !x.stroller } : x); return { a: { ...s.a, party: p } }; }); }
 
-  chooseTransOut(v) { this.setState(s => ({ a: { ...s.a, transOut: v } })); }
-  chooseTransReturn(v) { this.setState(s => ({ a: { ...s.a, transReturn: v } })); }
   outAssigned(a) { return this.sum(a.outStopCounts) + a.outCount; }
   returnAssigned(a) { return this.sum(a.returnStopCounts) + a.returnCount; }
   bumpStop(field, i, d) {
@@ -1418,7 +1407,7 @@ class Component extends DCLogic {
   restart() {
     this.setState({
       screen: 'cover', idx: 0, err: false, perr: false, submitting: false,
-      a: { side: null, relation: null, attend: null, scope: null, email: '', phone: '', count: 1, party: [{ name: '', diet: 'meat', child: false, childAge: null, childSeat: false, stroller: false }], outStopCounts: [0, 0, 0, 0], outCount: 0, returnSame: null, returnStopCounts: [0, 0, 0, 0], returnCount: 0, name: '', blessing: '' }
+      a: { side: null, relation: null, attend: null, scope: null, email: '', phone: '', count: 1, party: [{ name: '', diet: 'meat', child: false, childAge: null, childSeat: false, stroller: false }], outStopCounts: [0, 0, 0, 0], outCount: 0, returnStopCounts: [0, 0, 0, 0], returnCount: 0, name: '', blessing: '' }
     });
   }
 
@@ -1426,9 +1415,6 @@ class Component extends DCLogic {
     const sideMap = { groom: '男方親友', bride: '女方親友', both: '兩個都偶麻吉' };
     const relMap = { relative: '家人/親戚', colleague: '同事', friend: '好友' };
     const attendMap = { attend: '開心出席', absentInvite: '無法出席(想收喜帖)', absent: '無法出席' };
-    const outName = v => v === 'hsinchu' ? '新竹接駁車' : v === 'fengyuan' ? '豐原接駁車' : v === 'self' ? '自行前往' : '—';
-    const retName = v => v === 'hsinchu' ? '新竹接駁車' : v === 'fengyuan' ? '豐原接駁車' : v === 'self' ? '自行回家' : '—';
-    const stopsStr = counts => this.STOPS.map((s, i) => counts[i] > 0 ? s + ' ' + counts[i] + '人' : null).filter(Boolean).join('、');
     const rows = [];
     rows.push({ label: '親友', value: (sideMap[a.side] || '—') + '・' + (relMap[a.relation] || '—') });
     rows.push({ label: '出席', value: attendMap[a.attend] || '—' });
@@ -1482,7 +1468,7 @@ class Component extends DCLogic {
     this.setState(s => {
       const clr = {};
       if (v === 'dinner') { clr.outStopCounts = [0, 0, 0, 0]; clr.outCount = 0; }
-      if (v === 'ceremony') { clr.returnStopCounts = [0, 0, 0, 0]; clr.returnCount = 0; clr.returnSame = null; }
+      if (v === 'ceremony') { clr.returnStopCounts = [0, 0, 0, 0]; clr.returnCount = 0; }
       return { a: { ...s.a, scope: v, ...clr } };
     }, () => setTimeout(() => this.next(), 340));
   }
@@ -1497,14 +1483,6 @@ class Component extends DCLogic {
     return { eyebrowEn: c.en, title: c.title, optA: mk(...c.A), optB: mk(...c.B) };
   }
 
-  transOptArr(selected, handler, selfLabel, selfEn) {
-    const coral = '#D9654E', dark = '#2E2A24', mut = '#9A7A6C';
-    const defs = [['hsinchu', '新竹接駁車', 'Hsinchu shuttle'], ['fengyuan', '豐原接駁車', 'Fengyuan station'], ['self', selfLabel, selfEn]];
-    return defs.map(d => {
-      const active = selected === d[0];
-      return { label: d[1], en: d[2], on: () => handler(d[0]), bg: active ? coral : '#FFFFFF', color: active ? '#FFFFFF' : dark, sub: active ? '#FBE2DA' : mut, mark: active ? '✓' : '→' };
-    });
-  }
   stopArr(field) {
     const coral = '#D9654E', dark = '#2E2A24';
     const counts = this.state.a[field];
@@ -1526,8 +1504,6 @@ class Component extends DCLogic {
       outCountInc: () => this.bumpFengyuan('outCount', 1),
       returnCountDec: () => this.bumpFengyuan('returnCount', -1),
       returnCountInc: () => this.bumpFengyuan('returnCount', 1),
-      returnSame: () => this.setState(s => ({ a: { ...s.a, returnSame: true } })),
-      returnDiff: () => this.setState(s => ({ a: { ...s.a, returnSame: false } })),
       next: () => this.next(), prev: () => this.prev(), tryNext: () => this.tryNext(),
       setEmail: (e) => this.setState(s => ({ a: { ...s.a, email: e.target.value } })),
       setPhone: (e) => this.setState(s => ({ a: { ...s.a, phone: e.target.value } })),
@@ -1578,7 +1554,7 @@ class Component extends DCLogic {
       relationOpts: this.relationArr(a.relation),
       showEmail: st.screen === 'form' && key === 'email',
       contactTitle: a.attend === 'attend' ? '聯絡方式' : '電子喜帖',
-      contactSub: a.attend === 'attend' ? '我們會把回覆確認與當天資訊寄給你。Email 與手機至少填一種,聯絡資訊不會公開或外流。' : '我們會將電子喜帖與當天資訊寄到你的信箱,請留下 email。',
+      contactSub: a.attend === 'attend' ? '留 email 會收到回覆確認信與當天資訊;手機方便我們臨時聯絡你。兩者至少填一種,不會公開或外流。' : '我們會將電子喜帖與當天資訊寄到你的信箱,請留下 email。',
       emailVal: a.email,
       emailHint: a.email === '' ? (a.attend === 'attend' ? '會用來寄回覆確認信。' : '我們不會公開或外流你的信箱。') : (emailOk ? '✓ 看起來沒問題!' : '請輸入正確的 email 格式。'),
       emailHintColor: a.email === '' ? '#9A7A6C' : (emailOk ? '#5B9A6B' : '#C0492F'),

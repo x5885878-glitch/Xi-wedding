@@ -979,12 +979,12 @@
               <div style="font: 500 14px/1.7 'Noto Sans TC'; color: #9A7A6C; margin: 8px 0 20px;">希望大家可以穿著以下色系來玩~</div>
               <div style="position: relative; background: #FFFDF9; border: 1.5px solid #EADFCF; border-radius: 22px; padding: 30px 22px 22px; overflow: hidden;">
                 <div style="position: absolute; top: -30px; right: -30px; width: 110px; height: 110px; border-radius: 50%; background: radial-gradient(circle, rgba(217,101,78,.10), rgba(217,101,78,0) 70%);"></div>
-                <div style="font: 500 12px 'Noto Serif TC'; font-style: italic; letter-spacing: 1px; color: #B7A99C; margin-bottom: 18px;">大地色 · 深色系</div>
+                <div style="font: 700 11px 'Noto Sans TC'; letter-spacing: 2px; text-transform: uppercase; color: #D9654E; margin-bottom: 18px;">大地色系 · 莫蘭迪綠</div>
                 <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 22px 20px;">
                   <sc-for list="{{ dressColors }}" as="c" hint-placeholder-count="6">
                     <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; width: 64px; margin-top: {{ c.mt }};">
                       <div style="width: {{ c.size }}; height: {{ c.size }}; border-radius: {{ c.radius }}; background: {{ c.bg }}; box-shadow: 0 10px 20px -8px {{ c.shadow }};"></div>
-                      <div style="font: 500 11px 'Noto Serif TC'; color: #9A7A6C; text-align: center; line-height: 1.5; letter-spacing: .3px;">{{ c.name }}</div>
+                      <div style="font: 700 11px 'Noto Sans TC'; color: #9A7A6C; text-align: center; line-height: 1.5; letter-spacing: .3px;">{{ c.name }}</div>
                     </div>
                   </sc-for>
                 </div>
@@ -1087,10 +1087,9 @@
               </div>
               <div style="background: #fff; border: 2.5px solid #2E2A24; border-radius: 16px; box-shadow: 4px 4px 0 rgba(46,42,36,.14); padding: 14px 16px; margin-bottom: 12px;">
                 <div style="font: 900 15px 'Noto Serif TC'; color: #D9654E; margin-bottom: 2px;">新竹接駁車</div>
-                <div style="font: 500 12px/1.6 'Noto Sans TC'; color: #9A7A6C; margin-bottom: 6px;">於各上車地點集合，依人數調整路線。</div>
-                <div style="font: 500 11px/1.6 'Noto Sans TC'; color: #C0492F; margin-bottom: 10px;">＊新埔鎮、竹東鎮確切上車地點將依報名人數統一另行通知；竹北高鐵、介壽路已是固定地點。</div>
+                <div style="font: 500 12px/1.6 'Noto Sans TC'; color: #9A7A6C; margin-bottom: 10px;">於竹北高鐵集合上車，依報名人數安排車次。</div>
                 <div style="display: grid; gap: 8px;">
-                  <sc-for list="{{ outStops }}" as="s" hint-placeholder-count="4">
+                  <sc-for list="{{ outStops }}" as="s" hint-placeholder-count="1">
                     <div style="display: flex; align-items: center; gap: 10px; padding: 9px 11px; background: {{ s.bg }}; border: 2px solid #2E2A24; border-radius: 11px;">
                       <span style="flex: none; width: 22px; height: 22px; border-radius: 50%; background: {{ s.dotBg }}; color: {{ s.dotColor }}; border: 2px solid #2E2A24; font: 900 11px 'Noto Sans TC'; display: flex; align-items: center; justify-content: center;">{{ s.num }}</span>
                       <span style="flex: 1; font: 700 14px 'Noto Sans TC'; color: #2E2A24;">{{ s.label }}</span>
@@ -1128,10 +1127,9 @@
               </div>
               <div style="background: #fff; border: 2.5px solid #2E2A24; border-radius: 16px; box-shadow: 4px 4px 0 rgba(46,42,36,.14); padding: 14px 16px; margin-bottom: 12px;">
                 <div style="font: 900 15px 'Noto Serif TC'; color: #D9654E; margin-bottom: 2px;">新竹接駁車</div>
-                <div style="font: 500 12px/1.6 'Noto Sans TC'; color: #9A7A6C; margin-bottom: 6px;">於各下車地點下車。</div>
-                <div style="font: 500 11px/1.6 'Noto Sans TC'; color: #C0492F; margin-bottom: 10px;">＊新埔鎮、竹東鎮確切下車地點將依報名人數統一另行通知；竹北高鐵、介壽路已是固定地點。</div>
+                <div style="font: 500 12px/1.6 'Noto Sans TC'; color: #9A7A6C; margin-bottom: 10px;">於竹北高鐵下車。</div>
                 <div style="display: grid; gap: 8px;">
-                  <sc-for list="{{ returnStops }}" as="s" hint-placeholder-count="4">
+                  <sc-for list="{{ returnStops }}" as="s" hint-placeholder-count="1">
                     <div style="display: flex; align-items: center; gap: 10px; padding: 9px 11px; background: {{ s.bg }}; border: 2px solid #2E2A24; border-radius: 11px;">
                       <span style="flex: none; width: 22px; height: 22px; border-radius: 50%; background: {{ s.dotBg }}; color: {{ s.dotColor }}; border: 2px solid #2E2A24; font: 900 11px 'Noto Sans TC'; display: flex; align-items: center; justify-content: center;">{{ s.num }}</span>
                       <span style="flex: 1; font: 700 14px 'Noto Sans TC'; color: #2E2A24;">{{ s.label }}</span>
@@ -1262,14 +1260,15 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;: {&quot;width&quot;: 420, &quot;height&quot;: 800}}">
 class Component extends DCLogic {
-  STOPS = ['新埔鎮', '竹東鎮', '竹北高鐵', '新竹介壽路·金山街對面'];
+  STOPS = ['竹北高鐵'];
+  // 森林系美式婚禮：莫蘭迪大地色 + 莫蘭迪綠。黑色先保留不用，之後再看要不要加回來。
   DRESS_COLORS = [
     { hex: '#D9C7A3', shadow: 'rgba(201,166,107,.35)', name: '卡其 Khaki', size: 54, mt: 0, radius: '46% 54% 58% 42% / 58% 44% 56% 42%' },
     { hex: '#CBAB80', shadow: 'rgba(176,141,87,.35)', name: '駝色 Camel', size: 44, mt: 16, radius: '58% 42% 46% 54% / 44% 58% 42% 56%' },
     { hex: '#AD8873', shadow: 'rgba(139,94,60,.35)', name: '咖啡棕 Coffee', size: 58, mt: 2, radius: '42% 58% 44% 56% / 56% 42% 58% 44%' },
+    { hex: '#A3AC9E', shadow: 'rgba(94,107,84,.32)', name: '鼠尾草綠 Sage', size: 50, mt: 4, radius: '44% 56% 42% 58% / 58% 44% 56% 42%' },
     { hex: '#9CAA88', shadow: 'rgba(107,122,79,.35)', name: '橄欖綠 Olive', size: 46, mt: 18, radius: '54% 46% 58% 42% / 42% 56% 44% 58%' },
-    { hex: '#B57F73', shadow: 'rgba(123,45,38,.30)', name: '酒紅 Wine', size: 50, mt: 4, radius: '44% 56% 42% 58% / 58% 44% 56% 42%' },
-    { hex: '#7A7469', shadow: 'rgba(46,42,36,.30)', name: '黑・炭灰 Charcoal', size: 42, mt: 14, radius: '56% 44% 54% 46% / 46% 58% 42% 54%' }
+    { hex: '#5F6F52', shadow: 'rgba(46,56,38,.35)', name: '森林綠 Forest', size: 42, mt: 14, radius: '56% 44% 54% 46% / 46% 58% 42% 54%' }
   ];
 
   state = {
@@ -1278,8 +1277,8 @@ class Component extends DCLogic {
       side: null, relation: null, attend: null, scope: null, email: '', phone: '',
       count: 1,
       party: [{ name: '', diet: 'meat', child: false, childAge: null, childSeat: false, stroller: false }],
-      outStopCounts: [0, 0, 0, 0], outCount: 0,
-      returnStopCounts: [0, 0, 0, 0], returnCount: 0,
+      outStopCounts: [0], outCount: 0,
+      returnStopCounts: [0], returnCount: 0,
       name: '', blessing: ''
     }
   };
@@ -1341,7 +1340,7 @@ class Component extends DCLogic {
     this.setState(s => {
       const party = [];
       for (let i = 0; i < n; i++) party.push(s.a.party[i] || { name: '', diet: 'meat', child: false, childAge: null, childSeat: false, stroller: false });
-      return { a: { ...s.a, count: n, party, outStopCounts: [0, 0, 0, 0], outCount: 0, returnStopCounts: [0, 0, 0, 0], returnCount: 0 } };
+      return { a: { ...s.a, count: n, party, outStopCounts: [0], outCount: 0, returnStopCounts: [0], returnCount: 0 } };
     });
   }
   setPartyName(i, val) { this.setState(s => { const p = s.a.party.map((x, j) => j === i ? { ...x, name: val } : x); return { a: { ...s.a, party: p }, perr: false }; }); }
@@ -1407,7 +1406,7 @@ class Component extends DCLogic {
   restart() {
     this.setState({
       screen: 'cover', idx: 0, err: false, perr: false, submitting: false,
-      a: { side: null, relation: null, attend: null, scope: null, email: '', phone: '', count: 1, party: [{ name: '', diet: 'meat', child: false, childAge: null, childSeat: false, stroller: false }], outStopCounts: [0, 0, 0, 0], outCount: 0, returnStopCounts: [0, 0, 0, 0], returnCount: 0, name: '', blessing: '' }
+      a: { side: null, relation: null, attend: null, scope: null, email: '', phone: '', count: 1, party: [{ name: '', diet: 'meat', child: false, childAge: null, childSeat: false, stroller: false }], outStopCounts: [0], outCount: 0, returnStopCounts: [0], returnCount: 0, name: '', blessing: '' }
     });
   }
 

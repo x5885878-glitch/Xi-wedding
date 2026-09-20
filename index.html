@@ -3,7 +3,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="runtime.js"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet"><title>睿誠 ♥ 郁淳 婚禮邀請</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@700;900&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet"><title>睿誠 ♥ 郁淳 婚禮邀請</title>
 <style>body, body *{overflow-wrap:anywhere;}</style>
 </head>
 <body>
@@ -974,15 +974,15 @@
             <div style="width: 100%; max-width: 420px; animation: qInB .5s cubic-bezier(.3,1.1,.4,1) both;">
               <div style="display: flex; align-items: baseline; gap: 14px;">
                 <span style="font: 900 64px/1 'Noto Serif TC'; color: #F0D2C5;">{{ qNum }}</span>
-                <div><div style="font: 700 11px 'Noto Sans TC'; letter-spacing: 3px; text-transform: uppercase; color: #D9654E;">當天穿搭</div><h2 style="margin: 4px 0 0; font: 900 30px 'Noto Serif TC'; color: #2E2A24;">穿搭參考</h2></div>
+                <div><div style="font: 700 11px 'Noto Sans TC'; letter-spacing: 3px; text-transform: uppercase; color: #D9654E;">當天穿搭</div><h2 style="margin: 2px 0 0; font-style: italic; font-weight: 700; font-size: 32px; font-family: 'Playfair Display', 'Noto Serif TC', serif; color: #2E2A24;">Dress Code</h2></div>
               </div>
               <div style="font: 500 14px/1.7 'Noto Sans TC'; color: #9A7A6C; margin: 8px 0 20px;">希望大家可以穿著以下色系來玩~</div>
-              <div style="position: relative; background: #FFFDF9; border: 1.5px solid #EADFCF; border-radius: 22px; padding: 28px 22px 22px; overflow: hidden;">
+              <div style="position: relative; background: #FFFDF9; border: 1.5px solid #EADFCF; border-radius: 22px; padding: 30px 22px 22px; overflow: hidden;">
                 <div style="position: absolute; top: -30px; right: -30px; width: 110px; height: 110px; border-radius: 50%; background: radial-gradient(circle, rgba(217,101,78,.10), rgba(217,101,78,0) 70%);"></div>
                 <div style="display: grid; grid-template-columns: repeat(4, 1fr); justify-items: center; gap: 20px 8px;">
                   <sc-for list="{{ dressColors }}" as="c" hint-placeholder-count="7">
-                    <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
-                      <div style="width: 48px; height: 48px; border-radius: 50%; background: {{ c.bg }}; box-shadow: 0 8px 16px -6px {{ c.shadow }};"></div>
+                    <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; margin-top: {{ c.mt }};">
+                      <div style="width: {{ c.size }}; height: {{ c.size }}; border-radius: {{ c.radius }}; background: {{ c.bg }}; box-shadow: 0 10px 20px -8px {{ c.shadow }};"></div>
                       <div style="font: 700 11px 'Noto Sans TC'; color: #9A7A6C; text-align: center; line-height: 1.5; letter-spacing: .3px;">{{ c.name }}</div>
                     </div>
                   </sc-for>
@@ -1260,15 +1260,16 @@
 <script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;: {&quot;width&quot;: 420, &quot;height&quot;: 800}}">
 class Component extends DCLogic {
   STOPS = ['竹北高鐵'];
-  // 森林系美式婚禮：莫蘭迪大地色 + 莫蘭迪綠 + 黑。
+  // 森林系美式婚禮：莫蘭迪大地色 + 莫蘭迪綠 + 黑。大小/高低刻意做出有機分布感，
+  // 但排成 4 欄網格(7 色 = 4+3 兩排)，不會像自由換行那樣排成不平均的 4+2。
   DRESS_COLORS = [
-    { hex: '#D9C7A3', shadow: 'rgba(201,166,107,.35)', name: '卡其 Khaki' },
-    { hex: '#CBAB80', shadow: 'rgba(176,141,87,.35)', name: '駝色 Camel' },
-    { hex: '#AD8873', shadow: 'rgba(139,94,60,.35)', name: '咖啡棕 Coffee' },
-    { hex: '#A3AC9E', shadow: 'rgba(94,107,84,.32)', name: '鼠尾草綠 Sage' },
-    { hex: '#9CAA88', shadow: 'rgba(107,122,79,.35)', name: '橄欖綠 Olive' },
-    { hex: '#5F6F52', shadow: 'rgba(46,56,38,.35)', name: '森林綠 Forest' },
-    { hex: '#211D19', shadow: 'rgba(20,18,15,.35)', name: '黑 Black' }
+    { hex: '#D9C7A3', shadow: 'rgba(201,166,107,.35)', name: '卡其 Khaki', size: 54, mt: 0, radius: '46% 54% 58% 42% / 58% 44% 56% 42%' },
+    { hex: '#CBAB80', shadow: 'rgba(176,141,87,.35)', name: '駝色 Camel', size: 44, mt: 16, radius: '58% 42% 46% 54% / 44% 58% 42% 56%' },
+    { hex: '#AD8873', shadow: 'rgba(139,94,60,.35)', name: '咖啡棕 Coffee', size: 58, mt: 2, radius: '42% 58% 44% 56% / 56% 42% 58% 44%' },
+    { hex: '#A3AC9E', shadow: 'rgba(94,107,84,.32)', name: '鼠尾草綠 Sage', size: 50, mt: 4, radius: '44% 56% 42% 58% / 58% 44% 56% 42%' },
+    { hex: '#9CAA88', shadow: 'rgba(107,122,79,.35)', name: '橄欖綠 Olive', size: 46, mt: 18, radius: '54% 46% 58% 42% / 42% 56% 44% 58%' },
+    { hex: '#5F6F52', shadow: 'rgba(46,56,38,.35)', name: '森林綠 Forest', size: 42, mt: 14, radius: '56% 44% 54% 46% / 46% 58% 42% 54%' },
+    { hex: '#211D19', shadow: 'rgba(20,18,15,.35)', name: '黑 Black', size: 52, mt: 8, radius: '48% 52% 44% 56% / 54% 46% 58% 42%' }
   ];
 
   state = {
@@ -1562,7 +1563,7 @@ class Component extends DCLogic {
       phoneHintColor: a.phone === '' ? '#9A7A6C' : (this.validPhone(a.phone) ? '#5B9A6B' : '#C0492F'),
       showSchedule: st.screen === 'form' && key === 'schedule',
       showDress: st.screen === 'form' && key === 'dress',
-      dressColors: this.DRESS_COLORS.map(c => ({ bg: c.hex, name: c.name, shadow: c.shadow })),
+      dressColors: this.DRESS_COLORS.map(c => ({ bg: c.hex, name: c.name, size: c.size + 'px', mt: c.mt + 'px', radius: c.radius, shadow: c.shadow })),
       showScope: st.screen === 'form' && key === 'scope',
       scopeOpts: this.scopeArr(a.scope),
       showParty: st.screen === 'form' && key === 'party',

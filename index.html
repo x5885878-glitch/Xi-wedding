@@ -1396,8 +1396,8 @@ class Component extends DCLogic {
       b.append('scope', a.attend === 'attend' ? (a.scope === 'dinner' ? '僅晚宴' : (a.scope === 'ceremony' ? '僅證婚' : '全程')) : '');
       b.append('count', a.attend === 'attend' ? String(a.count) : '0');
       b.append('party', a.attend === 'attend' ? partyStr : '');
-      b.append('transOut', a.attend === 'attend' ? this.allocStr(a.outStopCounts, a.outCount, a.count - this.outAssigned(a)) : '');
-      b.append('transReturn', a.attend === 'attend' ? this.allocStr(a.returnStopCounts, a.returnCount, a.count - this.returnAssigned(a)) : '');
+      b.append('transOut', (a.attend === 'attend' && a.scope !== 'dinner') ? this.allocStr(a.outStopCounts, a.outCount, a.count - this.outAssigned(a)) : '');
+      b.append('transReturn', (a.attend === 'attend' && a.scope !== 'ceremony') ? this.allocStr(a.returnStopCounts, a.returnCount, a.count - this.returnAssigned(a)) : '');
       b.append('name', nm.trim());
       b.append('blessing', a.blessing || '');
       await fetch('https://script.google.com/macros/s/AKfycbywM25sBV-9bYwEMerPDCbvwJMPqKWP-_V3jtksAWKHpqrQE1RXbexR1oLt-qQKUxzU/exec', { method: 'POST', mode: 'no-cors', body: b });

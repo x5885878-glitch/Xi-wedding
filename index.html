@@ -989,7 +989,7 @@
               </div>
               <div style="margin-top: 14px; background: #FCE9DF; border: 2.5px solid #2E2A24; border-radius: 16px; box-shadow: 5px 5px 0 rgba(46,42,36,.16); padding: 14px 18px;">
                 <div style="font: 700 13px 'Noto Sans TC'; color: #D9654E; margin-bottom: 4px;">🤍 小提醒</div>
-                <div style="font: 500 13px/1.8 'Noto Sans TC'; color: #2E2A24;">白色 / 米色只有新娘可以穿 😄</div>
+                <div style="font: 500 13px/1.8 'Noto Sans TC'; color: #2E2A24;">白色 / 米白色只有新娘可以穿 😄</div>
               </div>
               <button onclick="{{ h.next }}" style="margin-top: 18px; width: 100%; padding: 17px; background: #D9654E; color: #FBF4EA; border: none; border-radius: 14px; font: 700 16px 'Noto Sans TC'; letter-spacing: 2px; cursor: pointer; box-shadow: 5px 5px 0 rgba(46,42,36,.18);">沒問題!</button>
             </div>
@@ -1071,6 +1071,17 @@
             </div>
           </sc-if>
 
+          <!-- ░░ 接駁轉場 ░░ -->
+          <sc-if value="{{ showShuttleIntro }}" hint-placeholder-val="{{ false }}">
+            <div style="width: 100%; max-width: 420px; text-align: center; animation: qInA .6s cubic-bezier(.3,1.1,.4,1) both;">
+              <div style="font: 700 11px 'Noto Sans TC'; letter-spacing: 4px; text-transform: uppercase; color: #D9654E; margin-bottom: 22px;">Shuttle</div>
+              <div style="font-style: italic; font-weight: 700; font-size: 34px; line-height: 1.4; font-family: 'Playfair Display', 'Noto Serif TC', serif; color: #2E2A24;">路途遙遠</div>
+              <div style="width: 64px; height: 2px; background: #D9654E; margin: 18px auto; transform: scaleX(0); animation: wipe .9s .35s cubic-bezier(.4,0,.2,1) forwards;"></div>
+              <div style="font: 500 15px/1.9 'Noto Sans TC'; color: #9A7A6C;">我們為您準備了接駁車<br>陪你走完這段路</div>
+              <button onclick="{{ h.next }}" style="margin-top: 34px; width: 100%; padding: 17px; background: #D9654E; color: #FBF4EA; border: none; border-radius: 14px; font: 700 16px 'Noto Sans TC'; letter-spacing: 2px; cursor: pointer; box-shadow: 5px 5px 0 rgba(46,42,36,.18);">出發吧 →</button>
+            </div>
+          </sc-if>
+
           <!-- ░░ 去程交通 ░░ -->
           <sc-if value="{{ showTransOut }}" hint-placeholder-val="{{ false }}">
             <div style="width: 100%; max-width: 420px; animation: qInA .5s cubic-bezier(.3,1.1,.4,1) both;">
@@ -1078,7 +1089,7 @@
                 <span style="font: 900 64px/1 'Noto Serif TC'; color: #F0D2C5;">{{ qNum }}</span>
                 <div><div style="font: 700 11px 'Noto Sans TC'; letter-spacing: 3px; text-transform: uppercase; color: #D9654E;">Shuttle · 去程</div><h2 style="margin: 4px 0 0; font: 900 30px 'Noto Serif TC'; color: #2E2A24;">去程交通</h2></div>
               </div>
-              <div style="font: 500 14px/1.7 'Noto Sans TC'; color: #9A7A6C; margin: 8px 0 14px;">一家人可分開搭乘。請填寫搭乘各接駁車的人數，未填的視為自行前往。</div>
+              <div style="font: 500 14px/1.7 'Noto Sans TC'; color: #9A7A6C; margin: 8px 0 14px;">一家人可分開搭乘。請填寫搭乘各接駁車的人數，未填的視為自行前往。人數填寫完畢會再提供搭乘時間，給有需要接駁的賓客們。</div>
               <div style="display: flex; align-items: center; justify-content: space-between; background: #FCE9DF; border: 2.5px solid #2E2A24; border-radius: 14px; box-shadow: 4px 4px 0 rgba(46,42,36,.14); padding: 11px 16px; margin-bottom: 14px;">
                 <span style="font: 700 13px 'Noto Sans TC'; color: #2E2A24;">已安排接駁 <b style="color:#D9654E;">{{ outAssigned }}</b> / 出席 {{ partyCount }} 人</span>
                 <span style="font: 700 13px 'Noto Sans TC'; color: #9A7A6C;">其餘 {{ outSelf }} 人自行</span>
@@ -1118,7 +1129,7 @@
                 <span style="font: 900 64px/1 'Noto Serif TC'; color: #F0D2C5;">{{ qNum }}</span>
                 <div><div style="font: 700 11px 'Noto Sans TC'; letter-spacing: 3px; text-transform: uppercase; color: #D9654E;">Shuttle · 回程</div><h2 style="margin: 4px 0 0; font: 900 30px 'Noto Serif TC'; color: #2E2A24;">回程安排</h2></div>
               </div>
-              <div style="font: 500 14px/1.7 'Noto Sans TC'; color: #9A7A6C; margin: 8px 0 14px;">請填寫回程搭乘各接駁車的人數，未填的視為自行返回。</div>
+              <div style="font: 500 14px/1.7 'Noto Sans TC'; color: #9A7A6C; margin: 8px 0 14px;">請填寫回程搭乘各接駁車的人數，未填的視為自行返回。人數填寫完畢會再提供搭乘時間，給有需要接駁的賓客們。</div>
               <div style="display: flex; align-items: center; justify-content: space-between; background: #FCE9DF; border: 2.5px solid #2E2A24; border-radius: 14px; box-shadow: 4px 4px 0 rgba(46,42,36,.14); padding: 11px 16px; margin-bottom: 14px;">
                 <span style="font: 700 13px 'Noto Sans TC'; color: #2E2A24;">已安排接駁 <b style="color:#D9654E;">{{ returnAssigned }}</b> / 出席 {{ partyCount }} 人</span>
                 <span style="font: 700 13px 'Noto Sans TC'; color: #9A7A6C;">其餘 {{ returnSelf }} 人自行</span>
@@ -1307,7 +1318,7 @@ class Component extends DCLogic {
     const a = this.state.a;
     const s = ['side', 'relation', 'attend'];
     if (a.attend === 'attend') {
-      s.push('schedule', 'dress', 'scope', 'party');
+      s.push('schedule', 'dress', 'scope', 'party', 'shuttleIntro');
       if (a.scope !== 'dinner') s.push('transOut');
       if (a.scope !== 'ceremony') s.push('transReturn');
     }
@@ -1576,6 +1587,7 @@ class Component extends DCLogic {
       scopeOpts: this.scopeArr(a.scope),
       showParty: st.screen === 'form' && key === 'party',
       perr: st.perr,
+      showShuttleIntro: st.screen === 'form' && key === 'shuttleIntro',
       showTransOut: st.screen === 'form' && key === 'transOut',
       showTransReturn: st.screen === 'form' && key === 'transReturn',
       showMessage: st.screen === 'form' && key === 'message',

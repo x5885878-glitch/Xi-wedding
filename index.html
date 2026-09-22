@@ -1012,8 +1012,8 @@
                 </sc-for>
               </div>
               <div style="margin-top: 16px; background: #FCE9DF; border: 2.5px solid #2E2A24; border-radius: 16px; box-shadow: 5px 5px 0 rgba(46,42,36,.16); padding: 16px 18px;">
-                <div style="font: 700 13px 'Noto Sans TC'; color: #D9654E; margin-bottom: 6px;">🚌 接駁車小提醒</div>
-                <div style="font: 500 13px/1.8 'Noto Sans TC'; color: #2E2A24;">接駁車路線：「新竹 ⇄ 會場」與「豐原火車站 ⇄ 會場」。<b>參加全程</b>：去程、回程接駁都可搭乘；<b>只參加證婚</b>：可搭去程接駁；<b>只參加晚宴</b>：可搭回程接駁。也都可以自行前往，選好後接下來會請你安排搭車人數。</div>
+                <div style="font: 700 13px 'Noto Sans TC'; color: #D9654E; margin-bottom: 6px;">🚌 路途遙遠，我們為您準備了接駁車</div>
+                <div style="font: 500 13px/1.8 'Noto Sans TC'; color: #2E2A24;">接駁車路線：「竹北高鐵 ⇄ 會場」與「豐原火車站 ⇄ 會場」。<br><b>參加全程</b>：去程、回程接駁都可搭乘<br><b>只參加證婚</b>：可搭去程接駁<br><b>只參加晚宴</b>：可搭回程接駁<br>也歡迎自行前往~</div>
               </div>
             </div>
           </sc-if>
@@ -1068,17 +1068,6 @@
               <sc-if value="{{ perr }}" hint-placeholder-val="{{ false }}">
                 <div style="color: #C0492F; font: 700 13px 'Noto Sans TC'; margin-top: 10px;">請填寫每位出席者的姓名。</div>
               </sc-if>
-            </div>
-          </sc-if>
-
-          <!-- ░░ 接駁轉場 ░░ -->
-          <sc-if value="{{ showShuttleIntro }}" hint-placeholder-val="{{ false }}">
-            <div style="width: 100%; max-width: 420px; text-align: center; animation: qInA .6s cubic-bezier(.3,1.1,.4,1) both;">
-              <div style="font: 700 11px 'Noto Sans TC'; letter-spacing: 4px; text-transform: uppercase; color: #D9654E; margin-bottom: 22px;">Shuttle</div>
-              <div style="font-style: italic; font-weight: 700; font-size: 34px; line-height: 1.4; font-family: 'Playfair Display', 'Noto Serif TC', serif; color: #2E2A24;">路途遙遠</div>
-              <div style="width: 64px; height: 2px; background: #D9654E; margin: 18px auto; transform: scaleX(0); animation: wipe .9s .35s cubic-bezier(.4,0,.2,1) forwards;"></div>
-              <div style="font: 500 15px/1.9 'Noto Sans TC'; color: #9A7A6C;">我們為您準備了接駁車<br>陪你走完這段路</div>
-              <button onclick="{{ h.next }}" style="margin-top: 34px; width: 100%; padding: 17px; background: #D9654E; color: #FBF4EA; border: none; border-radius: 14px; font: 700 16px 'Noto Sans TC'; letter-spacing: 2px; cursor: pointer; box-shadow: 5px 5px 0 rgba(46,42,36,.18);">出發吧 →</button>
             </div>
           </sc-if>
 
@@ -1318,7 +1307,7 @@ class Component extends DCLogic {
     const a = this.state.a;
     const s = ['side', 'relation', 'attend'];
     if (a.attend === 'attend') {
-      s.push('schedule', 'dress', 'scope', 'party', 'shuttleIntro');
+      s.push('schedule', 'dress', 'scope', 'party');
       if (a.scope !== 'dinner') s.push('transOut');
       if (a.scope !== 'ceremony') s.push('transReturn');
     }
@@ -1587,7 +1576,6 @@ class Component extends DCLogic {
       scopeOpts: this.scopeArr(a.scope),
       showParty: st.screen === 'form' && key === 'party',
       perr: st.perr,
-      showShuttleIntro: st.screen === 'form' && key === 'shuttleIntro',
       showTransOut: st.screen === 'form' && key === 'transOut',
       showTransReturn: st.screen === 'form' && key === 'transReturn',
       showMessage: st.screen === 'form' && key === 'message',

@@ -1083,23 +1083,16 @@
                 <span style="font: 700 13px 'Noto Sans TC'; color: #2E2A24;">已安排接駁 <b style="color:#D9654E;">{{ outAssigned }}</b> / 出席 {{ partyCount }} 人</span>
                 <span style="font: 700 13px 'Noto Sans TC'; color: #9A7A6C;">其餘 {{ outSelf }} 人自行</span>
               </div>
-              <div style="background: #fff; border: 2.5px solid #2E2A24; border-radius: 16px; box-shadow: 4px 4px 0 rgba(46,42,36,.14); padding: 14px 16px; margin-bottom: 12px;">
-                <div style="font: 900 15px 'Noto Serif TC'; color: #D9654E; margin-bottom: 2px;">新竹接駁車</div>
-                <div style="font: 500 12px/1.6 'Noto Sans TC'; color: #9A7A6C; margin-bottom: 10px;">於竹北高鐵集合上車，依報名人數安排車次。</div>
-                <div style="display: grid; gap: 8px;">
-                  <sc-for list="{{ outStops }}" as="s" hint-placeholder-count="1">
-                    <div style="display: flex; align-items: center; gap: 10px; padding: 9px 11px; background: {{ s.bg }}; border: 2px solid #2E2A24; border-radius: 11px;">
-                      <span style="flex: none; width: 22px; height: 22px; border-radius: 50%; background: {{ s.dotBg }}; color: {{ s.dotColor }}; border: 2px solid #2E2A24; font: 900 11px 'Noto Sans TC'; display: flex; align-items: center; justify-content: center;">{{ s.num }}</span>
-                      <span style="flex: 1; font: 700 14px 'Noto Sans TC'; color: #2E2A24;">{{ s.label }}</span>
-                      <div style="flex: none; display: flex; align-items: center; gap: 8px;">
-                        <button onclick="{{ s.onDec }}" style="width: 30px; height: 30px; border-radius: 8px; border: 2px solid #2E2A24; background: #FBF4EA; color: #D9654E; font: 900 16px 'Noto Serif TC'; cursor: pointer;">−</button>
-                        <span style="font: 900 19px 'Noto Serif TC'; color: #D9654E; min-width: 18px; text-align: center;">{{ s.count }}</span>
-                        <button onclick="{{ s.onInc }}" disabled="{{ outFull }}" style="width: 30px; height: 30px; border-radius: 8px; border: 2px solid #2E2A24; background: #FBF4EA; color: #D9654E; font: 900 16px 'Noto Serif TC'; cursor: pointer;">+</button>
-                      </div>
-                    </div>
-                  </sc-for>
+              <sc-for list="{{ outStops }}" as="s" hint-placeholder-count="1">
+                <div style="display: flex; align-items: center; justify-content: space-between; background: #fff; border: 2.5px solid #2E2A24; border-radius: 16px; box-shadow: 4px 4px 0 rgba(46,42,36,.14); padding: 14px 16px; margin-bottom: 12px;">
+                  <div><div style="font: 900 15px 'Noto Serif TC'; color: #D9654E;">{{ s.label }}接駁車</div><div style="font: 500 12px 'Noto Sans TC'; color: #9A7A6C;">於{{ s.label }}集合上車</div></div>
+                  <div style="display: flex; align-items: center; gap: 12px;">
+                    <button onclick="{{ s.onDec }}" style="width: 34px; height: 34px; border-radius: 9px; border: 2px solid #2E2A24; background: #FBF4EA; color: #D9654E; font: 900 18px 'Noto Serif TC'; cursor: pointer;">−</button>
+                    <span style="font: 900 24px 'Noto Serif TC'; color: #D9654E; min-width: 22px; text-align: center;">{{ s.count }}</span>
+                    <button onclick="{{ s.onInc }}" disabled="{{ outFull }}" style="width: 34px; height: 34px; border-radius: 9px; border: 2px solid #2E2A24; background: #FBF4EA; color: #D9654E; font: 900 18px 'Noto Serif TC'; cursor: pointer;">+</button>
+                  </div>
                 </div>
-              </div>
+              </sc-for>
               <div style="display: flex; align-items: center; justify-content: space-between; background: #fff; border: 2.5px solid #2E2A24; border-radius: 16px; box-shadow: 4px 4px 0 rgba(46,42,36,.14); padding: 14px 16px;">
                 <div><div style="font: 900 15px 'Noto Serif TC'; color: #D9654E;">豐原接駁車</div><div style="font: 500 12px 'Noto Sans TC'; color: #9A7A6C;">豐原火車站集合</div></div>
                 <div style="display: flex; align-items: center; gap: 12px;">
@@ -1123,23 +1116,16 @@
                 <span style="font: 700 13px 'Noto Sans TC'; color: #2E2A24;">已安排接駁 <b style="color:#D9654E;">{{ returnAssigned }}</b> / 出席 {{ partyCount }} 人</span>
                 <span style="font: 700 13px 'Noto Sans TC'; color: #9A7A6C;">其餘 {{ returnSelf }} 人自行</span>
               </div>
-              <div style="background: #fff; border: 2.5px solid #2E2A24; border-radius: 16px; box-shadow: 4px 4px 0 rgba(46,42,36,.14); padding: 14px 16px; margin-bottom: 12px;">
-                <div style="font: 900 15px 'Noto Serif TC'; color: #D9654E; margin-bottom: 2px;">新竹接駁車</div>
-                <div style="font: 500 12px/1.6 'Noto Sans TC'; color: #9A7A6C; margin-bottom: 10px;">於竹北高鐵下車。</div>
-                <div style="display: grid; gap: 8px;">
-                  <sc-for list="{{ returnStops }}" as="s" hint-placeholder-count="1">
-                    <div style="display: flex; align-items: center; gap: 10px; padding: 9px 11px; background: {{ s.bg }}; border: 2px solid #2E2A24; border-radius: 11px;">
-                      <span style="flex: none; width: 22px; height: 22px; border-radius: 50%; background: {{ s.dotBg }}; color: {{ s.dotColor }}; border: 2px solid #2E2A24; font: 900 11px 'Noto Sans TC'; display: flex; align-items: center; justify-content: center;">{{ s.num }}</span>
-                      <span style="flex: 1; font: 700 14px 'Noto Sans TC'; color: #2E2A24;">{{ s.label }}</span>
-                      <div style="flex: none; display: flex; align-items: center; gap: 8px;">
-                        <button onclick="{{ s.onDec }}" style="width: 30px; height: 30px; border-radius: 8px; border: 2px solid #2E2A24; background: #FBF4EA; color: #D9654E; font: 900 16px 'Noto Serif TC'; cursor: pointer;">−</button>
-                        <span style="font: 900 19px 'Noto Serif TC'; color: #D9654E; min-width: 18px; text-align: center;">{{ s.count }}</span>
-                        <button onclick="{{ s.onInc }}" disabled="{{ returnFull }}" style="width: 30px; height: 30px; border-radius: 8px; border: 2px solid #2E2A24; background: #FBF4EA; color: #D9654E; font: 900 16px 'Noto Serif TC'; cursor: pointer;">+</button>
-                      </div>
-                    </div>
-                  </sc-for>
+              <sc-for list="{{ returnStops }}" as="s" hint-placeholder-count="1">
+                <div style="display: flex; align-items: center; justify-content: space-between; background: #fff; border: 2.5px solid #2E2A24; border-radius: 16px; box-shadow: 4px 4px 0 rgba(46,42,36,.14); padding: 14px 16px; margin-bottom: 12px;">
+                  <div><div style="font: 900 15px 'Noto Serif TC'; color: #D9654E;">{{ s.label }}接駁車</div><div style="font: 500 12px 'Noto Sans TC'; color: #9A7A6C;">送往{{ s.label }}</div></div>
+                  <div style="display: flex; align-items: center; gap: 12px;">
+                    <button onclick="{{ s.onDec }}" style="width: 34px; height: 34px; border-radius: 9px; border: 2px solid #2E2A24; background: #FBF4EA; color: #D9654E; font: 900 18px 'Noto Serif TC'; cursor: pointer;">−</button>
+                    <span style="font: 900 24px 'Noto Serif TC'; color: #D9654E; min-width: 22px; text-align: center;">{{ s.count }}</span>
+                    <button onclick="{{ s.onInc }}" disabled="{{ returnFull }}" style="width: 34px; height: 34px; border-radius: 9px; border: 2px solid #2E2A24; background: #FBF4EA; color: #D9654E; font: 900 18px 'Noto Serif TC'; cursor: pointer;">+</button>
+                  </div>
                 </div>
-              </div>
+              </sc-for>
               <div style="display: flex; align-items: center; justify-content: space-between; background: #fff; border: 2.5px solid #2E2A24; border-radius: 16px; box-shadow: 4px 4px 0 rgba(46,42,36,.14); padding: 14px 16px;">
                 <div><div style="font: 900 15px 'Noto Serif TC'; color: #D9654E;">豐原接駁車</div><div style="font: 500 12px 'Noto Sans TC'; color: #9A7A6C;">送往豐原火車站</div></div>
                 <div style="display: flex; align-items: center; gap: 12px;">
@@ -1492,12 +1478,8 @@ class Component extends DCLogic {
   }
 
   stopArr(field) {
-    const coral = '#D9654E', dark = '#2E2A24';
     const counts = this.state.a[field];
-    return this.STOPS.map((s, i) => {
-      const active = counts[i] > 0;
-      return { label: s, num: i + 1, count: counts[i], onInc: () => this.bumpStop(field, i, 1), onDec: () => this.bumpStop(field, i, -1), bg: active ? '#FCE9DF' : '#FBF4EA', dotBg: active ? coral : '#FFFFFF', dotColor: active ? '#FFFFFF' : dark };
-    });
+    return this.STOPS.map((s, i) => ({ label: s, count: counts[i], onInc: () => this.bumpStop(field, i, 1), onDec: () => this.bumpStop(field, i, -1) }));
   }
 
   renderVals() {

@@ -840,7 +840,15 @@
         </div>
         <div style="margin-top: 16px; font: 900 20px 'Noto Sans TC'; color: #2E2A24; letter-spacing: 1px; animation: up .6s ease both .7s;">2027.01.23 SAT</div>
         <div style="margin-top: 4px; font: 500 14px 'Noto Sans TC'; color: #8A6A5E; animation: up .6s ease both .78s;">台中市 · 克里夫莊園</div>
-        <button onclick="{{ h.start }}" style="margin-top: 30px; padding: 15px 40px; background: #D9654E; color: #FBF4EA; border: none; border-radius: 999px; font: 700 16px 'Noto Sans TC'; letter-spacing: 3px; cursor: pointer; box-shadow: 5px 5px 0 rgba(46,42,36,.18); animation: up .6s ease both .86s;" style-hover="background: #C5543E;">開始回覆 →</button>
+        <sc-if value="{{ formOpen }}" hint-placeholder-val="{{ true }}">
+          <button onclick="{{ h.start }}" style="margin-top: 30px; padding: 15px 40px; background: #D9654E; color: #FBF4EA; border: none; border-radius: 999px; font: 700 16px 'Noto Sans TC'; letter-spacing: 3px; cursor: pointer; box-shadow: 5px 5px 0 rgba(46,42,36,.18); animation: up .6s ease both .86s;" style-hover="background: #C5543E;">開始回覆 →</button>
+        </sc-if>
+        <sc-if value="{{ formClosed }}" hint-placeholder-val="{{ false }}">
+          <div style="margin-top: 30px; max-width: 320px; background: #FCE9DF; border: 2.5px solid #2E2A24; border-radius: 16px; box-shadow: 5px 5px 0 rgba(46,42,36,.18); padding: 18px 22px; animation: up .6s ease both .86s;">
+            <div style="font: 900 15px 'Noto Sans TC'; color: #D9654E; margin-bottom: 6px;">💌 問卷已截止</div>
+            <div style="font: 500 13px/1.8 'Noto Sans TC'; color: #2E2A24;">填答已於 {{ closedDate }} 截止，感謝大家的熱情回覆！<br>我們很期待與你相聚 ♥</div>
+          </div>
+        </sc-if>
       </div>
     </sc-if>
 
@@ -1244,6 +1252,9 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;: {&quot;width&quot;: 420, &quot;height&quot;: 800}}">
 class Component extends DCLogic {
+  // 問卷截止開關：統計已完成，要重開只要把這改回 false。
+  CLOSED = true;
+  CLOSED_DATE = '2026.10.25';
   STOPS = ['竹北高鐵'];
   // 森林系美式婚禮：莫蘭迪大地色 + 莫蘭迪綠 + 黑。大小/高低刻意做出有機分布感，
   // 但排成 4 欄網格(7 色 = 4+3 兩排)，不會像自由換行那樣排成不平均的 4+2。
@@ -1487,7 +1498,7 @@ class Component extends DCLogic {
     const pad = n => (n < 10 ? '0' : '') + n;
     const coral = '#D9654E', dark = '#2E2A24';
     const h = {
-      start: () => this.setState({ screen: 'form', idx: 0 }),
+      start: () => { if (!this.CLOSED) this.setState({ screen: 'form', idx: 0 }); },
       sideGroom: () => this.set('side', 'groom', true), sideBride: () => this.set('side', 'bride', true),
       countDec: () => this.setCount(a.count - 1), countInc: () => this.setCount(a.count + 1),
       outCountDec: () => this.bumpFengyuan('outCount', -1),
@@ -1536,6 +1547,7 @@ class Component extends DCLogic {
 
     return {
       showCover: st.screen === 'cover', showForm: st.screen === 'form', showDone: st.screen === 'done',
+      formClosed: this.CLOSED, formOpen: !this.CLOSED, closedDate: this.CLOSED_DATE,
       showChoice: st.screen === 'form' && key === 'side',
       sideOpts: this.sideArr(a.side),
       showAttend: st.screen === 'form' && key === 'attend',

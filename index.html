@@ -1021,7 +1021,7 @@
               </div>
               <div style="margin-top: 16px; background: #FCE9DF; border: 2.5px solid #2E2A24; border-radius: 16px; box-shadow: 5px 5px 0 rgba(46,42,36,.16); padding: 16px 18px;">
                 <div style="font: 700 13px 'Noto Sans TC'; color: #D9654E; margin-bottom: 6px;">🚌 路途遙遠，我們為您準備了接駁車</div>
-                <div style="font: 500 13px/1.8 'Noto Sans TC'; color: #2E2A24;">接駁車路線：「竹北高鐵 ⇄ 會場」與「豐原火車站 ⇄ 會場」。<br><b>參加全程</b>：去程、回程接駁都可搭乘<br><b>只參加證婚</b>：可搭去程接駁<br><b>只參加晚宴</b>：可搭回程接駁<br>也歡迎自行前往~</div>
+                <div style="font: 500 13px/1.8 'Noto Sans TC'; color: #2E2A24;">接駁車路線：「竹北高鐵 ⇄ 會場」、「新埔 ⇄ 會場」與「豐原火車站 ⇄ 會場」。<br><b>參加全程</b>：去程、回程接駁都可搭乘<br><b>只參加證婚</b>：可搭去程接駁<br><b>只參加晚宴</b>：可搭回程接駁<br>也歡迎自行前往~</div>
               </div>
             </div>
           </sc-if>
@@ -1091,7 +1091,7 @@
                 <span style="font: 700 13px 'Noto Sans TC'; color: #2E2A24;">已安排接駁 <b style="color:#D9654E;">{{ outAssigned }}</b> / 出席 {{ partyCount }} 人</span>
                 <span style="font: 700 13px 'Noto Sans TC'; color: #9A7A6C;">其餘 {{ outSelf }} 人自行</span>
               </div>
-              <sc-for list="{{ outStops }}" as="s" hint-placeholder-count="1">
+              <sc-for list="{{ outStops }}" as="s" hint-placeholder-count="2">
                 <div style="display: flex; align-items: center; justify-content: space-between; background: #fff; border: 2.5px solid #2E2A24; border-radius: 16px; box-shadow: 4px 4px 0 rgba(46,42,36,.14); padding: 14px 16px; margin-bottom: 12px;">
                   <div><div style="font: 900 15px 'Noto Serif TC'; color: #D9654E;">{{ s.label }}接駁車</div><div style="font: 500 12px 'Noto Sans TC'; color: #9A7A6C;">於{{ s.label }}集合上車</div></div>
                   <div style="display: flex; align-items: center; gap: 12px;">
@@ -1124,7 +1124,7 @@
                 <span style="font: 700 13px 'Noto Sans TC'; color: #2E2A24;">已安排接駁 <b style="color:#D9654E;">{{ returnAssigned }}</b> / 出席 {{ partyCount }} 人</span>
                 <span style="font: 700 13px 'Noto Sans TC'; color: #9A7A6C;">其餘 {{ returnSelf }} 人自行</span>
               </div>
-              <sc-for list="{{ returnStops }}" as="s" hint-placeholder-count="1">
+              <sc-for list="{{ returnStops }}" as="s" hint-placeholder-count="2">
                 <div style="display: flex; align-items: center; justify-content: space-between; background: #fff; border: 2.5px solid #2E2A24; border-radius: 16px; box-shadow: 4px 4px 0 rgba(46,42,36,.14); padding: 14px 16px; margin-bottom: 12px;">
                   <div><div style="font: 900 15px 'Noto Serif TC'; color: #D9654E;">{{ s.label }}接駁車</div><div style="font: 500 12px 'Noto Sans TC'; color: #9A7A6C;">送往{{ s.label }}</div></div>
                   <div style="display: flex; align-items: center; gap: 12px;">
@@ -1255,7 +1255,7 @@ class Component extends DCLogic {
   // 問卷截止開關：統計已完成，要重開只要把這改回 false。
   CLOSED = true;
   CLOSED_DATE = '2026.10.25';
-  STOPS = ['竹北高鐵'];
+  STOPS = ['竹北高鐵', '新埔'];
   // 森林系美式婚禮：莫蘭迪大地色 + 莫蘭迪綠 + 黑。大小/高低刻意做出有機分布感，
   // 但排成 4 欄網格(7 色 = 4+3 兩排)，不會像自由換行那樣排成不平均的 4+2。
   DRESS_COLORS = [
@@ -1283,8 +1283,8 @@ class Component extends DCLogic {
       side: null, relation: null, attend: null, scope: null, email: '', phone: '',
       count: 1,
       party: [{ name: '', diet: 'meat', child: false, childAge: null, childSeat: false, stroller: false }],
-      outStopCounts: [0], outCount: 0,
-      returnStopCounts: [0], returnCount: 0,
+      outStopCounts: this.STOPS.map(() => 0), outCount: 0,
+      returnStopCounts: this.STOPS.map(() => 0), returnCount: 0,
       name: '', blessing: ''
     }
   };
@@ -1346,7 +1346,7 @@ class Component extends DCLogic {
     this.setState(s => {
       const party = [];
       for (let i = 0; i < n; i++) party.push(s.a.party[i] || { name: '', diet: 'meat', child: false, childAge: null, childSeat: false, stroller: false });
-      return { a: { ...s.a, count: n, party, outStopCounts: [0], outCount: 0, returnStopCounts: [0], returnCount: 0 } };
+      return { a: { ...s.a, count: n, party, outStopCounts: this.STOPS.map(() => 0), outCount: 0, returnStopCounts: this.STOPS.map(() => 0), returnCount: 0 } };
     });
   }
   setPartyName(i, val) { this.setState(s => { const p = s.a.party.map((x, j) => j === i ? { ...x, name: val } : x); return { a: { ...s.a, party: p }, perr: false }; }); }
@@ -1412,7 +1412,7 @@ class Component extends DCLogic {
   restart() {
     this.setState({
       screen: 'cover', idx: 0, err: false, perr: false, submitting: false,
-      a: { side: null, relation: null, attend: null, scope: null, email: '', phone: '', count: 1, party: [{ name: '', diet: 'meat', child: false, childAge: null, childSeat: false, stroller: false }], outStopCounts: [0], outCount: 0, returnStopCounts: [0], returnCount: 0, name: '', blessing: '' }
+      a: { side: null, relation: null, attend: null, scope: null, email: '', phone: '', count: 1, party: [{ name: '', diet: 'meat', child: false, childAge: null, childSeat: false, stroller: false }], outStopCounts: this.STOPS.map(() => 0), outCount: 0, returnStopCounts: this.STOPS.map(() => 0), returnCount: 0, name: '', blessing: '' }
     });
   }
 
@@ -1472,8 +1472,8 @@ class Component extends DCLogic {
   setScope(v) {
     this.setState(s => {
       const clr = {};
-      if (v === 'dinner') { clr.outStopCounts = [0, 0, 0, 0]; clr.outCount = 0; }
-      if (v === 'ceremony') { clr.returnStopCounts = [0, 0, 0, 0]; clr.returnCount = 0; }
+      if (v === 'dinner') { clr.outStopCounts = this.STOPS.map(() => 0); clr.outCount = 0; }
+      if (v === 'ceremony') { clr.returnStopCounts = this.STOPS.map(() => 0); clr.returnCount = 0; }
       return { a: { ...s.a, scope: v, ...clr } };
     }, () => setTimeout(() => this.next(), 340));
   }
